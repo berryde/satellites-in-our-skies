@@ -1,3 +1,5 @@
+import type { Topology, MultiPolygon } from 'topojson-specification';
+
 export type Satellite = {
 	name: string;
 	period?: number;
@@ -30,3 +32,12 @@ export type SpaceMission = {
 	price: number;
 	countryCode: string;
 };
+
+export type CountryProperties = { name: string; missions?: number };
+
+export type WorldGeoJson = Topology<{
+	countries1: {
+		type: 'GeometryCollection';
+		geometries: ({ properties: CountryProperties } & MultiPolygon)[];
+	};
+}>;

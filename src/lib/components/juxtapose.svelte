@@ -1,3 +1,4 @@
+<!-- Compare 2 abitrary divs with a split-pane -->
 <script lang="ts">
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 
