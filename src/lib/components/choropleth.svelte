@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { SpaceMissionAgg, WorldGeoJson } from '$lib/types';
+	import type { MissionsByCountry, WorldGeoJson } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { extent } from 'd3-array';
 	import { feature } from 'topojson-client';
-	import { scaleLinear } from 'd3-scale';
+	import { scaleSequential } from 'd3-scale';
 	import { geoEquirectangular, geoPath } from 'd3-geo';
+	import { interpolateBlues } from 'd3-scale-chromatic';
 
-	export let colors = ['#DBDBDB', '#36829A', '#102542'];
 	export let world: WorldGeoJson;
-	export let missions: SpaceMissionAgg[];
+	export let missions: MissionsByCountry[];
 
 	let width: number;
 	let height: number;
@@ -24,14 +24,22 @@
 		const missionsExtent = <[number, number]>(
 			extent(countries.features, (d) => d.properties.missions!)
 		);
-		const scale = scaleLinear<string>().domain(missionsExtent).range([colors[1], colors[2]]);
+
+		// Color using interpolateBlues with missionsExtent domain, skipping the first 25% of the scale
+		const offset = 0.5;
+		const color = scaleSequential()
+			.domain(missionsExtent)
+			.interpolator((t) => interpolateBlues(offset + t / (1 - offset)));
 
 		const path = geoPath().projection(geoEquirectangular().fitSize([width, height], countries));
 		data = countries.features.map((d) => ({
 			name: d.properties.name,
 			value: d.properties.missions!,
 			path: path(d)!,
-			color: scale(d.properties.missions!)
+			color:
+				!d.properties.missions || d.properties.missions == 0
+					? '#a8a29e'
+					: color(d.properties.missions)
 		}));
 	});
 </script>

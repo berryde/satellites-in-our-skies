@@ -159,7 +159,7 @@
 		<slot name="left" />
 	</div>
 	<div
-		class="h-full w-2 bg-black z-20 cursor-ew-resize separator"
+		class="h-full w-2 bg-slate-900 z-20 cursor-ew-resize separator"
 		bind:this={separator}
 		on:mousedown={mouseDown}
 		on:mouseup={mouseUp}
@@ -169,6 +169,16 @@
 		class="pane2 absolute right-0 flex flex-col justify-center clip-content h-full"
 	>
 		<slot name="right" />
+	</div>
+	<div class="absolute left-5 bottom-5 flex flex-col text-sm">
+		<div class="flex items-center space-x-2">
+			<div class="rounded w-3 h-3 bg-stone-400" />
+			<p>No data</p>
+		</div>
+		<div class="flex items-center justify-center space-x-2">
+			<div class="rounded w-3 h-3 bg-gradient-to-br from-sky-300 to-blue-900" />
+			<p>Number of space missions</p>
+		</div>
 	</div>
 </div>
 

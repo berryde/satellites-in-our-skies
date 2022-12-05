@@ -18,10 +18,15 @@ export type Satellite = {
 	ownerCountryCode: string;
 };
 
-export type SpaceMissionAgg = {
+export type MissionsByCountry = {
 	country: string;
 	countryCode: string;
 	missions: number;
+};
+
+export type TimeSeries = {
+	year: number;
+	count: number;
 };
 
 export type SpaceMission = {

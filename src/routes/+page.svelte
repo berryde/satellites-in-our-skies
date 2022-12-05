@@ -1,33 +1,62 @@
 <script lang="ts">
 	import Choropleth from '$lib/components/choropleth.svelte';
 	import Juxtapose from '$lib/components/juxtapose.svelte';
+	import LineChart from '$lib/components/line-chart.svelte';
 	import Loader from '$lib/components/loader.svelte';
 	import Orbit from '$lib/components/orbit.svelte';
-	import type { Satellite, SpaceMissionAgg, WorldGeoJson } from '$lib/types';
+	import StackedAreaChart from '$lib/components/stacked-area-chart.svelte';
+	import type { Satellite, MissionsByCountry, WorldGeoJson, TimeSeries } from '$lib/types';
 	import { onMount } from 'svelte';
 
 	let satelliteFilter: 'orbitClass' | 'purpose';
 	let data: {
 		satellites: Satellite[];
-		spaceRaceMissionsAgg: SpaceMissionAgg[];
-		spaceMissionsAgg: SpaceMissionAgg[];
+		satellitesOverTime: TimeSeries[];
+		missionsOverTime: ({ year: number } & { [key: string]: number })[];
+		missions1965: MissionsByCountry[];
+		missions2022: MissionsByCountry[];
 		world: WorldGeoJson;
 	};
 
 	const loadData = async () => {
-		const satellites = fetch('data/satellites.json');
-		const spaceMissionsAgg = fetch('data/space_missions/space_missions_agg.json');
-		const spaceRaceMissionsAgg = fetch('data/space_missions/space_race_missions_agg.json');
+		// Satellite data
+		const satellites = fetch('data/satellites/satellites.json');
+		const satellitesOverTime = fetch('data/satellites/satellites_over_time.json');
+
+		// Mission data
+		const missionsOverTime = fetch('data/space_missions/missions_by_country_by_year.json');
+		const missions2022 = fetch('data/space_missions/missions_2022.json');
+		const missions1965 = fetch('data/space_missions/missions_1965.json');
+
+		// GeoData
 		const world = fetch('data/world-geo.json');
 
-		data = await Promise.all([satellites, spaceMissionsAgg, spaceRaceMissionsAgg, world])
+		data = await Promise.all([
+			satellites,
+			satellitesOverTime,
+			missionsOverTime,
+			missions2022,
+			missions1965,
+			world
+		])
 			.then((responses) => Promise.all(responses.map((r) => r.json())))
-			.then(([satellites, spaceMissionsAgg, spaceRaceMissionsAgg, world]) => ({
-				satellites,
-				spaceMissionsAgg,
-				spaceRaceMissionsAgg,
-				world
-			}));
+			.then(
+				([
+					satellites,
+					satellitesOverTime,
+					missionsOverTime,
+					missions2022,
+					missions1965,
+					world
+				]) => ({
+					satellites,
+					satellitesOverTime,
+					missionsOverTime,
+					missions2022,
+					missions1965,
+					world
+				})
+			);
 	};
 
 	onMount(() => {
@@ -44,50 +73,87 @@
 	</div>
 {:else}
 	<div class="mx-auto max-w-4xl py-20 w-full space-y-10">
-		<h1 class="text-4xl font-bold">Are we entering a new space race?</h1>
+		<div>
+			<h1 class="text-4xl font-bold">The Satellites in Our Skies</h1>
+			<h2 class="text-2xl font-medium">A Visual Exploration of Satellite Technology</h2>
+		</div>
 
-		<section class="space-y-5">
-			<h2 class="text-2xl font-bold">Countries with space missions</h2>
+		<div class="space-y-5">
 			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sem leo, luctus ut est a,
-				placerat vestibulum arcu. Maecenas at quam odio. Nam placerat lobortis lectus, ut lobortis
-				ipsum hendrerit a. Maecenas bibendum in felis nec vehicula. Mauris ante metus, ultrices et
-				leo id, ullamcorper eleifend libero. Praesent quis gravida urna, nec congue odio. Curabitur
-				vel nisl et augue pulvinar commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				Donec tristique lorem ornare enim bibendum, eget molestie nisi pretium. Curabitur mauris
-				dui, venenatis quis egestas in, porttitor nec mauris.
+				Satellites have become an integral part of our modern world, providing us with a wide range
+				of services and technologies that are essential to our daily lives. From communication and
+				navigation, to weather forecasting and Earth observation, these man-made objects play a
+				vital role in our global society. But how did we come to have so many satellites orbiting
+				Earth, and what are they used for?
 			</p>
+			<p>
+				By examining the satellites in orbit, the countries and organizations involved in launching
+				them, and the various purposes for which satellites are used, this data story traces the
+				development of satellite technology from its earliest beginnings to the present day.
+			</p>
+		</div>
+
+		<!-- Space missions -->
+		<section class="space-y-5">
+			<h2 class="text-2xl font-bold">The growth of the space age</h2>
+			<p>
+				In the early days of the space age, the race to explore the final frontier was dominated by
+				two key players: the United States and the Soviet Union. These two superpowers competed to
+				launch the first satellite, the first human into space, and the first spacecraft to land on
+				the Moon. Over time, the focus of space exploration shifted from a Cold War-era showdown to
+				a more collaborative and international effort.
+			</p>
+			<!-- A map showing the countries involved in space exploration over time -->
 			<div class="h-96 flex flex-col">
 				<div class="w-full flex justify-between">
-					<h3 class="text-xl text-red-500">1965</h3>
-					<h3 class="text-xl text-blue-300">2022</h3>
+					<h3 class="text-xl font-bold">1965</h3>
+					<h3 class="text-xl  font-bold">2022</h3>
 				</div>
 				<Juxtapose>
-					<div slot="left" class="w-full h-96 flex flex-col clip-content justify-center bg-red-100">
+					<div
+						slot="left"
+						class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
+					>
 						<Choropleth
 							world={data.world}
-							missions={data.spaceRaceMissionsAgg}
+							missions={data.missions1965}
 							class="w-full fixed left-0 "
-							colors={['#000022', '#D87781', '#D32937']}
 						/>
 					</div>
 					<div
 						slot="right"
-						class="w-full h-96 flex flex-col clip-content justify-center bg-blue-100"
+						class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
 					>
 						<Choropleth
 							world={data.world}
-							missions={data.spaceMissionsAgg}
-							colors={['#000022', '#78C0E0', '#449DD1']}
+							missions={data.missions2022}
 							class="w-full fixed left-0"
 						/>
 					</div>
 				</Juxtapose>
-				<p class="text-slate-500 text-sm">Drag the slider to compare the two maps.</p>
+				<p class="text-slate-500 text-sm">
+					Drag the slider to compare the two maps. Hover over a country to view the number of space
+					missions it has launched.
+				</p>
 			</div>
+			<p>
+				Today, the space industry is a multi-billion dollar enterprise, with countries and
+				organizations from around the world competing to launch the next generation of satellites
+				and spacecraft.
+			</p>
+			<!-- A chart showing the number of space missions over time -->
+			<!-- <div>
+				<LineChart data={data.missionsOverTime} />
+				<p class="text-slate-500 text-sm">
+					Hover over an event on the X-axis to find out more about that year.
+				</p>
+			</div> -->
+			<StackedAreaChart data={data.missionsOverTime} />
 		</section>
+
+		<!-- Orbit height map -->
 		<section class="space-y-5">
-			<h2 class="text-2xl font-bold">Man-made satellites orbiting Earth</h2>
+			<h2 class="text-2xl font-bold">The satellites orbiting Earth</h2>
 			<p>
 				Proin lacinia efficitur elit, ut accumsan nisi mollis a. Quisque vehicula dolor eget ligula
 				rhoncus, sit amet rutrum lectus elementum. Nullam efficitur nulla in sem hendrerit, et
@@ -96,15 +162,16 @@
 				Vestibulum et diam dictum, laoreet diam eu, blandit odio. Maecenas elementum lectus neque,
 				eget elementum felis vulputate ut.
 			</p>
-			<select bind:value={satelliteFilter}>
+			<select bind:value={satelliteFilter} class="bg-neutral-200  rounded p-1">
 				<option value="orbitClass">Orbit class</option>
 				<option value="purpose">Purpose</option>
 				<option value="users">Users</option>
 			</select>
 			<Orbit satellites={data.satellites} filter={satelliteFilter} />
-		</section>
 
-		<!-- Orbit height map -->
+			<!-- A chart showing the top countries or organizations by the number of satellites they have in orbit -->
+			<!-- A pie chart showing the most common purposes for satellites -->
+		</section>
 
 		<!-- Specific detail charts -->
 	</div>

@@ -1,12 +1,17 @@
 <script lang="ts">
 	import type { Satellite } from '$lib/types';
-	import { scaleLinear, type ScaleLinear } from 'd3-scale';
+	import { scaleLinear, scaleOrdinal, type ScaleLinear } from 'd3-scale';
 	import { onMount } from 'svelte';
 	import { zoomIdentity } from 'd3-zoom';
 	import type { D3ZoomEvent } from 'd3-zoom';
 	import * as THREE from 'three';
 	import { zoom as D3Zoom, select } from 'd3';
 	import type { WebGLRenderer } from 'three';
+	import { schemeTableau10 } from 'd3-scale-chromatic';
+	import seedrandom from 'seedrandom';
+
+	// Set a seed for the random number generator
+	const rng = seedrandom('satellite');
 
 	export let satellites: Satellite[];
 	export let filter: 'purpose' | 'orbitClass' | 'users' = 'orbitClass';
@@ -16,7 +21,6 @@
 	const FAR = 5000;
 	const EARTH_RADIUS = 6371;
 	const DEPTH = 0;
-	const colors = ['#ef4444', '#3b82f6', '#22c55e', '#d946ef', '#ddd6fe', '#f97316'];
 	const values = {
 		purpose: [
 			'Communications',
@@ -40,7 +44,7 @@
 
 	const randomPosition = (r: number) => {
 		// get a random point on the circle with radius r
-		const theta = Math.random() * 2 * Math.PI;
+		const theta = rng.double() * 2 * Math.PI;
 		const x = r * Math.cos(theta);
 		const y = r * Math.sin(theta);
 		return [x, y];
@@ -49,6 +53,8 @@
 	function toRadians(angle: number) {
 		return angle * (Math.PI / 180);
 	}
+
+	$: color = scaleOrdinal<string>().domain(values[filter]).range(schemeTableau10);
 
 	const render = () => {
 		function getScaleFromZ(z: number) {
@@ -100,8 +106,7 @@
 			new THREE.Float32BufferAttribute(
 				satellites
 					.map((satellite) => {
-						const color = getColor(satellite[filter], values[filter], colors);
-						return new THREE.Color(color).toArray();
+						return new THREE.Color(color(satellite[filter])).toArray();
 					})
 					.flat(),
 				3
@@ -109,7 +114,7 @@
 		);
 
 		const material = new THREE.PointsMaterial({
-			size: 6,
+			size: 8,
 			sizeAttenuation: false,
 			map: circle,
 			vertexColors: true,
@@ -125,7 +130,7 @@
 		planet.position.z = -DEPTH;
 		scene.add(planet);
 
-		scene.background = new THREE.Color(0x000000);
+		scene.background = new THREE.Color(0x0f172a);
 
 		// Three.js render loop
 		function animate() {
@@ -176,16 +181,11 @@
 	class="w-full rounded"
 	height="250px"
 />
-<div class="space-y-3">
-	<div class="flex space-x-3">
-		{#each values[filter] as value}
-			<div class="flex items-center bg-slate-200 rounded px-1">
-				<div
-					class="w-4 h-4 rounded-full mr-2"
-					style={`background-color: ${getColor(value, values[filter], colors)}`}
-				/>
-				<p>{value}</p>
-			</div>
-		{/each}
-	</div>
+<div class="flex space-x-3">
+	{#each values[filter] as value}
+		<div class="flex items-center bg-neutral-200 rounded px-1">
+			<div class="w-4 h-4 rounded-full mr-2" style={`background-color: ${color(value)}`} />
+			<p>{value}</p>
+		</div>
+	{/each}
 </div>
