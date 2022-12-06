@@ -1,14 +1,15 @@
 <script lang="ts">
 	import type { MissionsByCountry, WorldGeoJson } from '$lib/types';
 	import { onMount } from 'svelte';
-	import { extent } from 'd3-array';
+
 	import { feature } from 'topojson-client';
 	import { scaleSequential } from 'd3-scale';
 	import { geoEquirectangular, geoPath } from 'd3-geo';
-	import { interpolateBlues } from 'd3-scale-chromatic';
+	import { interpolateMagma } from 'd3-scale-chromatic';
 
 	export let world: WorldGeoJson;
 	export let missions: MissionsByCountry[];
+	export let extent: [number, number];
 
 	let width: number;
 	let height: number;
@@ -21,15 +22,13 @@
 			d.properties.missions = mission ? mission.missions : 0;
 		});
 
-		const missionsExtent = <[number, number]>(
-			extent(countries.features, (d) => d.properties.missions!)
-		);
+		const missionsExtent = <[number, number]>extent;
 
 		// Color using interpolateBlues with missionsExtent domain, skipping the first 25% of the scale
 		const offset = 0.5;
 		const color = scaleSequential()
 			.domain(missionsExtent)
-			.interpolator((t) => interpolateBlues(offset + t / (1 - offset)));
+			.interpolator((t) => interpolateMagma(offset + t / (1 - offset)));
 
 		const path = geoPath().projection(geoEquirectangular().fitSize([width, height], countries));
 		data = countries.features.map((d) => ({

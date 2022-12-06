@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AxisTitles from '$lib/components/axis-titles.svelte';
 	import Choropleth from '$lib/components/choropleth.svelte';
 	import Juxtapose from '$lib/components/juxtapose.svelte';
 	import LineChart from '$lib/components/line-chart.svelte';
@@ -6,6 +7,12 @@
 	import Orbit from '$lib/components/orbit.svelte';
 	import StackedAreaChart from '$lib/components/stacked-area-chart.svelte';
 	import type { Satellite, MissionsByCountry, WorldGeoJson, TimeSeries } from '$lib/types';
+	import {
+		interpolateBlues,
+		interpolateGreens,
+		interpolateInferno,
+		interpolateTurbo
+	} from 'd3-scale-chromatic';
 	import { onMount } from 'svelte';
 
 	let satelliteFilter: 'orbitClass' | 'purpose';
@@ -19,25 +26,13 @@
 	};
 
 	const loadData = async () => {
-		// Satellite data
-		const satellites = fetch('data/satellites/satellites.json');
-		const satellitesOverTime = fetch('data/satellites/satellites_over_time.json');
-
-		// Mission data
-		const missionsOverTime = fetch('data/space_missions/missions_by_country_by_year.json');
-		const missions2022 = fetch('data/space_missions/missions_2022.json');
-		const missions1965 = fetch('data/space_missions/missions_1965.json');
-
-		// GeoData
-		const world = fetch('data/world-geo.json');
-
 		data = await Promise.all([
-			satellites,
-			satellitesOverTime,
-			missionsOverTime,
-			missions2022,
-			missions1965,
-			world
+			fetch('data/satellites/satellites.json'),
+			fetch('data/satellites/satellites_over_time.json'),
+			fetch('data/space_missions/missions_by_country_by_year.json'),
+			fetch('data/space_missions/missions_2022.json'),
+			fetch('data/space_missions/missions_1965.json'),
+			fetch('data/world-geo.json')
 		])
 			.then((responses) => Promise.all(responses.map((r) => r.json())))
 			.then(
@@ -94,8 +89,8 @@
 		</div>
 
 		<!-- Space missions -->
-		<section class="space-y-5">
-			<h2 class="text-2xl font-bold">The growth of the space age</h2>
+		<section class="space-y-7">
+			<h2 class="text-3xl font-bold">The growth of the space age</h2>
 			<p>
 				In the early days of the space age, the race to explore the final frontier was dominated by
 				two key players: the United States and the Soviet Union. These two superpowers competed to
@@ -104,51 +99,52 @@
 				a more collaborative and international effort.
 			</p>
 			<!-- A map showing the countries involved in space exploration over time -->
-			<div class="h-96 flex flex-col">
-				<div class="w-full flex justify-between">
-					<h3 class="text-xl font-bold">1965</h3>
-					<h3 class="text-xl  font-bold">2022</h3>
+			<div class="space-y-3">
+				<p class="text-2xl font-medium">Which countries have launched space missions?</p>
+				<div class="h-96 flex flex-col">
+					<div class="w-full flex justify-between">
+						<h3 class="text-xl">1965</h3>
+						<h3 class="text-xl">2022</h3>
+					</div>
+					<Juxtapose>
+						<div
+							slot="left"
+							class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
+						>
+							<Choropleth
+								world={data.world}
+								missions={data.missions1965}
+								extent={[0, Math.max(...data.missions2022.map((d) => d.missions))]}
+								class="w-full fixed left-0 "
+							/>
+						</div>
+						<div
+							slot="right"
+							class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
+						>
+							<Choropleth
+								world={data.world}
+								missions={data.missions2022}
+								extent={[0, Math.max(...data.missions2022.map((d) => d.missions))]}
+								class="w-full fixed left-0"
+							/>
+						</div>
+					</Juxtapose>
+					<p class="text-slate-500 text-sm">
+						Drag the slider to compare the two maps. Hover over a country to view the number of
+						space missions it has launched.
+					</p>
 				</div>
-				<Juxtapose>
-					<div
-						slot="left"
-						class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
-					>
-						<Choropleth
-							world={data.world}
-							missions={data.missions1965}
-							class="w-full fixed left-0 "
-						/>
-					</div>
-					<div
-						slot="right"
-						class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
-					>
-						<Choropleth
-							world={data.world}
-							missions={data.missions2022}
-							class="w-full fixed left-0"
-						/>
-					</div>
-				</Juxtapose>
-				<p class="text-slate-500 text-sm">
-					Drag the slider to compare the two maps. Hover over a country to view the number of space
-					missions it has launched.
-				</p>
 			</div>
 			<p>
 				Today, the space industry is a multi-billion dollar enterprise, with countries and
 				organizations from around the world competing to launch the next generation of satellites
 				and spacecraft.
 			</p>
-			<!-- A chart showing the number of space missions over time -->
-			<!-- <div>
-				<LineChart data={data.missionsOverTime} />
-				<p class="text-slate-500 text-sm">
-					Hover over an event on the X-axis to find out more about that year.
-				</p>
-			</div> -->
-			<StackedAreaChart data={data.missionsOverTime} />
+			<div class="space-y-4">
+				<p class="text-2xl font-medium">Space missions launched per year</p>
+				<StackedAreaChart data={data.missionsOverTime} />
+			</div>
 		</section>
 
 		<!-- Orbit height map -->
@@ -167,7 +163,7 @@
 				<option value="purpose">Purpose</option>
 				<option value="users">Users</option>
 			</select>
-			<Orbit satellites={data.satellites} filter={satelliteFilter} />
+			<Orbit data={data.satellites} filter={satelliteFilter} />
 
 			<!-- A chart showing the top countries or organizations by the number of satellites they have in orbit -->
 			<!-- A pie chart showing the most common purposes for satellites -->

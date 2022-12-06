@@ -1,177 +1,137 @@
 <script lang="ts">
-	import type { Satellite } from '$lib/types';
-	import { scaleLinear, scaleOrdinal, type ScaleLinear } from 'd3-scale';
-	import { onMount } from 'svelte';
+	import type { OrbitCategory, Satellite } from '$lib/types';
+	import { scaleLinear, scaleOrdinal } from 'd3-scale';
 	import { zoomIdentity } from 'd3-zoom';
 	import type { D3ZoomEvent } from 'd3-zoom';
 	import * as THREE from 'three';
 	import { zoom as D3Zoom, select } from 'd3';
-	import type { WebGLRenderer } from 'three';
 	import { schemeTableau10 } from 'd3-scale-chromatic';
 	import seedrandom from 'seedrandom';
+	import Legend from './legend.svelte';
+	import { FPS, OrbitCategories } from '$lib/constants';
 
-	// Set a seed for the random number generator
-	const rng = seedrandom('satellite');
-
-	export let satellites: Satellite[];
-	export let filter: 'purpose' | 'orbitClass' | 'users' = 'orbitClass';
+	export let data: Satellite[];
+	export let filter: OrbitCategory = 'orbitClass';
 
 	const FOV = 40;
 	const NEAR = 10;
 	const FAR = 5000;
 	const EARTH_RADIUS = 6371;
 	const DEPTH = 0;
-	const values = {
-		purpose: [
-			'Communications',
-			'Earth Observation',
-			'Navigation',
-			'Space Science',
-			'Technology Development',
-			'Other'
-		],
-		orbitClass: ['LEO', 'MEO', 'GEO', 'HEO', 'Elliptical', 'Other'],
-		users: ['Commercial', 'Civil', 'Government', 'Military', 'Other']
-	};
 
-	const getColor = (value: string, options: string[], colors: string[]) => {
-		const index = options.indexOf(value);
-		return index === -1 ? colors[options.indexOf('Other')] : colors[options.indexOf(value)];
-	};
+	const scene = new THREE.Scene();
+	const earth = new THREE.TextureLoader().load('earth.png');
+	const rng = seedrandom('satellite');
+	const circle = new THREE.PointsMaterial({
+		size: 8,
+		sizeAttenuation: false,
+		map: new THREE.TextureLoader().load('circle-sprite.png'),
+		vertexColors: true,
+		transparent: true
+	});
 
-	let width: number;
-	let height: number;
+	let width = 0;
+	let height = 0;
+	let element: HTMLElement;
 
 	const randomPosition = (r: number) => {
-		// get a random point on the circle with radius r
 		const theta = rng.double() * 2 * Math.PI;
-		const x = r * Math.cos(theta);
-		const y = r * Math.sin(theta);
-		return [x, y];
+		return [r * Math.cos(theta), r * Math.sin(theta)];
 	};
 
 	function toRadians(angle: number) {
 		return angle * (Math.PI / 180);
 	}
 
-	$: color = scaleOrdinal<string>().domain(values[filter]).range(schemeTableau10);
+	function scaleFromZ(z: number) {
+		return (height / (Math.tan(toRadians(FOV / 2)) * z)) * 2;
+	}
 
-	const render = () => {
-		function getScaleFromZ(z: number) {
-			let half_fov = FOV / 2;
-			let half_fov_radians = toRadians(half_fov);
-			let half_fov_height = Math.tan(half_fov_radians) * z;
-			let fov_height = half_fov_height * 2;
-			let scale = height / fov_height; // Divide visualization height by height derived from field of view
-			return scale;
-		}
+	function zFromScale(scale: number) {
+		return height / scale / (2 * Math.tan(toRadians(FOV / 2)));
+	}
 
-		function getZFromScale(scale: number) {
-			let half_fov = FOV / 2;
-			let half_fov_radians = toRadians(half_fov);
-			let scale_height = height / scale;
-			let camera_z_position = scale_height / (2 * Math.tan(half_fov_radians));
-			return camera_z_position;
-		}
+	function animate() {
+		setTimeout(function () {
+			requestAnimationFrame(animate);
+		}, 1000 / FPS);
+		renderer.render(scene, camera);
+	}
 
+	function render(width: number, height: number) {
+		if (width == 0 && height == 0) return;
+
+		console.log('running render', width, height);
 		renderer.setSize(width, height);
 
-		// Configure zoom
+		// Initialise zoom
 		const zoom = D3Zoom<HTMLCanvasElement, unknown>()
-			.scaleExtent([getScaleFromZ(FAR), getScaleFromZ(NEAR)])
+			.scaleExtent([scaleFromZ(FAR), scaleFromZ(NEAR)])
 			.on('zoom', (e: D3ZoomEvent<HTMLCanvasElement, any>) => {
-				let scale = e.transform.k;
-				let x = -(e.transform.x - width / 2) / scale;
-				let y = (e.transform.y - height / 2) / scale;
-				let z = getZFromScale(scale);
-				camera.position.set(x, y, z);
+				const scale = e.transform.k;
+				camera.position.set(
+					-(e.transform.x - width / 2) / scale,
+					(e.transform.y - height / 2) / scale,
+					scaleFromZ(scale)
+				);
 			});
-
-		select(renderer.domElement).call(zoom);
 		zoom.transform(
 			select(renderer.domElement),
-			zoomIdentity.translate(width / 2, height / 2).scale(getScaleFromZ(FAR))
+			zoomIdentity.translate(width / 2, height / 2).scale(scaleFromZ(FAR))
 		);
-		camera.position.set(0, 0, FAR);
+		select(renderer.domElement).call(zoom);
 
+		// Update the camera position on resize
 		window.addEventListener('resize', () => {
 			renderer.setSize(width, height);
 			camera.updateProjectionMatrix();
 		});
 
+		// Create a a set of points from the data
 		const geometry = new THREE.BufferGeometry();
 		geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 		geometry.setAttribute(
 			'color',
 			new THREE.Float32BufferAttribute(
-				satellites
-					.map((satellite) => {
-						return new THREE.Color(color(satellite[filter])).toArray();
+				data
+					.map((datum) => {
+						return new THREE.Color(color(datum[filter])).toArray();
 					})
 					.flat(),
 				3
 			)
 		);
 
-		const material = new THREE.PointsMaterial({
-			size: 8,
-			sizeAttenuation: false,
-			map: circle,
-			vertexColors: true,
-			transparent: true
-		});
+		// Add the points to the scene
+		scene.add(new THREE.Points(geometry, circle));
 
-		const points = new THREE.Points(geometry, material);
-		scene.add(points);
-
+		// Add the Earth to the scene
 		const planet = new THREE.Sprite(new THREE.SpriteMaterial({ map: earth }));
-
 		planet.scale.set(scale(EARTH_RADIUS), scale(EARTH_RADIUS), 1);
 		planet.position.z = -DEPTH;
 		scene.add(planet);
 
-		scene.background = new THREE.Color(0x0f172a);
-
-		// Three.js render loop
-		function animate() {
-			requestAnimationFrame(animate);
-			renderer.render(scene, camera);
-		}
+		// Trigger the animation loop
 		animate();
-	};
+	}
 
-	let vertices: number[] = [];
-	let scale: ScaleLinear<number, number, never>;
-	let loaded = false;
-	let renderer: WebGLRenderer;
-	let camera: THREE.PerspectiveCamera;
+	$: color = scaleOrdinal<string>().domain(OrbitCategories[filter]).range(schemeTableau10);
 
-	const scene = new THREE.Scene();
-	const circle = new THREE.TextureLoader().load('circle-sprite.png');
-	const earth = new THREE.TextureLoader().load('earth.png');
+	$: renderer = new THREE.WebGLRenderer({ canvas: element });
 
-	onMount(() => {
-		// Initialize Three.js
-		renderer = new THREE.WebGLRenderer({ canvas: element });
-		camera = new THREE.PerspectiveCamera(FOV, width / height, NEAR, FAR);
+	$: camera = new THREE.PerspectiveCamera(FOV, width / height, NEAR, FAR);
 
-		// Create a scale for mapping kilometers to pixels
-		scale = scaleLinear()
-			.domain([0, EARTH_RADIUS + Math.max(...satellites.map((s) => s.perigee))])
-			.range([0, 2000]);
+	$: scale = scaleLinear()
+		.domain([0, EARTH_RADIUS + Math.max(...data.map((s) => s.perigee))])
+		.range([0, 2000]);
 
-		// Initialise the satellite positions so that they don't move on re-render
-		for (let i = 0; i < satellites.length; i++) {
-			vertices.push(...randomPosition(scale(EARTH_RADIUS + satellites[i].perigee)), 0);
-		}
+	$: vertices = data
+		.map((datum) => {
+			return [...randomPosition(scale(EARTH_RADIUS + datum.perigee)), 0];
+		})
+		.flat();
 
-		render();
-		loaded = true;
-	});
-
-	let element: HTMLElement;
-
-	$: loaded && filter && render();
+	$: render(width, height);
 </script>
 
 <canvas
@@ -181,11 +141,5 @@
 	class="w-full rounded"
 	height="250px"
 />
-<div class="flex space-x-3">
-	{#each values[filter] as value}
-		<div class="flex items-center bg-neutral-200 rounded px-1">
-			<div class="w-4 h-4 rounded-full mr-2" style={`background-color: ${color(value)}`} />
-			<p>{value}</p>
-		</div>
-	{/each}
-</div>
+
+<Legend keys={OrbitCategories[filter]} />

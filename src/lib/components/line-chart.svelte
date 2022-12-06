@@ -4,50 +4,10 @@
 	import { scaleLinear, scaleTime } from 'd3-scale';
 	import { select } from 'd3';
 	import { axisBottom, axisLeft } from 'd3-axis';
+	import { timeline } from '$lib/constants';
 
 	export let data: TimeSeries[] = [];
-	export let timeline: { name: string; year: number }[] = [
-		{
-			name: 'First artificial satellite',
-			year: 1957
-		},
-		{
-			name: 'First photograph of Earth from space',
-			year: 1959
-		},
-		{
-			name: 'First human spaceflight',
-			year: 1961
-		},
-		{
-			name: 'First human on the moon',
-			year: 1969
-		},
-		{
-			name: 'End of the space race',
-			year: 1975
-		},
-		{
-			name: 'First multinational space station',
-			year: 1998
-		},
-		{
-			name: 'SpaceX launches first commercial spacecraft',
-			year: 2008
-		},
-		{
-			name: 'SpaceX performs first landing of an orbital rocket',
-			year: 2015
-		},
-		{
-			name: 'SpaceX begins launching Starlink megaconstellation',
-			year: 2019
-		},
-		{
-			name: 'The global COVID-19 pandemic slows progress',
-			year: 2021
-		}
-	];
+
 	const margins = {
 		top: 25,
 		left: 25,

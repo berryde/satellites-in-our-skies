@@ -18,6 +18,8 @@ export type Satellite = {
 	ownerCountryCode: string;
 };
 
+export type OrbitCategory = 'purpose' | 'orbitClass' | 'users';
+
 export type MissionsByCountry = {
 	country: string;
 	countryCode: string;
