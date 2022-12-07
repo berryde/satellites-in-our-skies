@@ -7,7 +7,7 @@ export const OrbitCategories = {
 		'Technology Development',
 		'Other'
 	],
-	orbitClass: ['LEO', 'MEO', 'GEO', 'HEO', 'Elliptical', 'Other'],
+	orbitClass: ['LEO', 'MEO', 'GEO', 'Elliptical'],
 	users: ['Commercial', 'Civil', 'Government', 'Military', 'Other']
 };
 

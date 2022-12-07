@@ -7,15 +7,8 @@
 	import Orbit from '$lib/components/orbit.svelte';
 	import StackedAreaChart from '$lib/components/stacked-area-chart.svelte';
 	import type { Satellite, MissionsByCountry, WorldGeoJson, TimeSeries } from '$lib/types';
-	import {
-		interpolateBlues,
-		interpolateGreens,
-		interpolateInferno,
-		interpolateTurbo
-	} from 'd3-scale-chromatic';
 	import { onMount } from 'svelte';
 
-	let satelliteFilter: 'orbitClass' | 'purpose';
 	let data: {
 		satellites: Satellite[];
 		satellitesOverTime: TimeSeries[];
@@ -67,13 +60,12 @@
 		</div>
 	</div>
 {:else}
-	<div class="mx-auto max-w-4xl py-20 w-full space-y-10">
-		<div>
-			<h1 class="text-4xl font-bold">The Satellites in Our Skies</h1>
-			<h2 class="text-2xl font-medium">A Visual Exploration of Satellite Technology</h2>
-		</div>
-
+	<div class="mx-auto max-w-4xl py-20 w-full space-y-16">
 		<div class="space-y-5">
+			<div>
+				<h1 class="text-4xl font-bold">The Satellites in Our Skies</h1>
+				<h2 class="text-2xl font-medium">A Visual Exploration of Satellite Technology</h2>
+			</div>
 			<p>
 				Satellites have become an integral part of our modern world, providing us with a wide range
 				of services and technologies that are essential to our daily lives. From communication and
@@ -89,7 +81,7 @@
 		</div>
 
 		<!-- Space missions -->
-		<section class="space-y-7">
+		<section class="space-y-5">
 			<h2 class="text-3xl font-bold">The growth of the space age</h2>
 			<p>
 				In the early days of the space age, the race to explore the final frontier was dominated by
@@ -131,33 +123,49 @@
 				</div>
 			</div>
 			<p>
-				Today, the space industry is a multi-billion dollar enterprise, with countries and
-				organizations from around the world competing to launch the next generation of satellites
-				and spacecraft.
+				Today, the space industry is a multi-billion pound enterprise, with countries, and
+				increasingly organizations from around the world competing to launch the next generation of
+				satellites and spacecraft.
 			</p>
-			<div class="space-y-4">
+			<div class="space-y-3">
 				<p class="text-2xl font-medium">Space missions launched per year</p>
 				<StackedAreaChart data={data.missionsOverTime} />
 			</div>
+			<p>
+				In the present day, the United States and China are the two countries that have launched the
+				most space missions. Nevertheless, it is clear that the proliferation of space technology
+				has led to a new era of space exploration, and inspired a generation of innovators to
+				develop new technologies and applications for satellites.
+			</p>
 		</section>
 
 		<!-- Orbit height map -->
 		<section class="space-y-5">
-			<h2 class="text-2xl font-bold">The satellites orbiting Earth</h2>
+			<h2 class="text-3xl font-bold">The satellites orbiting Earth</h2>
 			<p>
-				Proin lacinia efficitur elit, ut accumsan nisi mollis a. Quisque vehicula dolor eget ligula
-				rhoncus, sit amet rutrum lectus elementum. Nullam efficitur nulla in sem hendrerit, et
-				fringilla tellus viverra. Suspendisse et turpis orci. Aliquam commodo tincidunt dapibus.
-				Quisque sed sem est. Etiam et orci eget ex placerat ultricies. Nullam et blandit risus.
-				Vestibulum et diam dictum, laoreet diam eu, blandit odio. Maecenas elementum lectus neque,
-				eget elementum felis vulputate ut.
+				The satellites orbiting Earth play a vital role in our modern world, providing a wide range
+				of services and technologies that are essential to our daily lives. These man-made objects
+				can be found in a variety of orbits, ranging from low Earth orbit to geostationary orbit and
+				beyond. At any given time, there are thousands of satellites orbiting the Earth, belonging
+				to a variety of countries and organizations. Some of these satellites are owned and operated
+				by governments, while others are owned by private companies. They serve a wide range of
+				purposes, from communication and navigation to weather forecasting and Earth observation.
 			</p>
-			<select bind:value={satelliteFilter} class="bg-neutral-200  rounded p-1">
-				<option value="orbitClass">Orbit class</option>
-				<option value="purpose">Purpose</option>
-				<option value="users">Users</option>
-			</select>
-			<Orbit data={data.satellites} filter={satelliteFilter} />
+			<p>
+				The map below shows the distribution of satellites in orbit around the Earth. The different
+				colors represent the various orbits in which satellites can be found. The size of each dot
+				represents the relative size of the satellite.
+			</p>
+
+			<Orbit data={data.satellites} />
+
+			<p>
+				Most satellites in low Earth orbit, where they can take advantage of the lower altitude to
+				provide more precise positioning and communication services. However, there are also many
+				satellites in higher orbits, such as geostationary orbit, where they can remain stationary
+				relative to the Earth's surface, providing constant coverage for satellite communication and
+				other services.
+			</p>
 
 			<!-- A chart showing the top countries or organizations by the number of satellites they have in orbit -->
 			<!-- A pie chart showing the most common purposes for satellites -->

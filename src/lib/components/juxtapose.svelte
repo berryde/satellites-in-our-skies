@@ -176,7 +176,7 @@
 			<p>No data</p>
 		</div>
 		<div class="flex items-center justify-center space-x-2">
-			<div class="rounded w-3 h-3 bg-gradient-to-r from-purple-800 to-yellow-300" />
+			<div class="rounded w-3 h-3 bg-gradient-to-br from-sky-200 to-blue-800" />
 			<p>Number of space missions</p>
 		</div>
 	</div>

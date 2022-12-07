@@ -5,7 +5,7 @@
 	import { feature } from 'topojson-client';
 	import { scaleSequential } from 'd3-scale';
 	import { geoEquirectangular, geoPath } from 'd3-geo';
-	import { interpolateMagma } from 'd3-scale-chromatic';
+	import { interpolateBlues } from 'd3-scale-chromatic';
 
 	export let world: WorldGeoJson;
 	export let missions: MissionsByCountry[];
@@ -23,11 +23,10 @@
 			d.properties.missions = mission ? mission.missions : 0;
 		});
 
-		// Color using interpolateBlues with missionsExtent domain, skipping the first 25% of the scale
-		const offset = 0.5;
+		const offset = 0.25;
 		const color = scaleSequential()
 			.domain(<[number, number]>extent)
-			.interpolator((t) => interpolateMagma(offset + t / (1 - offset)));
+			.interpolator((t) => interpolateBlues(offset + t / (1 - offset)));
 
 		const path = geoPath().projection(geoEquirectangular().fitSize([width, height], countries));
 		data = countries.features.map((d) => ({

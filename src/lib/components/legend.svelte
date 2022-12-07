@@ -1,32 +1,35 @@
 <script lang="ts">
-	import { colorScheme } from '$lib/common';
-	import { scaleOrdinal } from 'd3-scale';
+	import type { ScaleOrdinal } from 'd3-scale';
 	import { createEventDispatcher } from 'svelte';
 
+	export let color: ScaleOrdinal<string, string, never> | undefined = undefined;
 	export let keys: string[];
+	export let disabledKeys: string[] = [];
 	export let subtitle = 'Hover over a legend key to filter the visualisation';
 
 	const dispatch = createEventDispatcher();
 
-	const color = scaleOrdinal<string>().domain(keys).range(colorScheme);
-
 	function handleClick(key: string) {
-		console.log('click', key);
 		dispatch('click', key);
 	}
 </script>
 
 <div class="space-y-1">
-	<div class="flex flex-wrap space-x-3 text-sm">
+	<div class="flex flex-wrap gap-x-3 gap-y-3 text-sm">
 		{#each keys as key}
 			<div
-				class="flex items-center bg-neutral-200 rounded px-1 cursor-pointer select-none"
+				class="flex items-center bg-neutral-200 rounded px-1 transition-opacity cursor-pointer select-none {disabledKeys.includes(
+					key
+				) && 'opacity-50'}"
 				on:mouseenter={() => dispatch('mouseenter', key)}
 				on:mouseleave={() => dispatch('mouseleave', key)}
 				on:click={() => handleClick(key)}
 				on:keypress={() => handleClick(key)}
 			>
-				<div class="w-4 h-4 rounded-full mr-2" style={`background-color: ${color(key)}`} />
+				{#if color != undefined}
+					<div class="w-3 h-3 rounded mr-2" style={`background-color: ${color(key)}`} />
+				{/if}
+
 				<p>{key}</p>
 			</div>
 		{/each}
