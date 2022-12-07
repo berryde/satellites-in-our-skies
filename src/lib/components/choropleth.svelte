@@ -15,19 +15,18 @@
 	let height: number;
 	let data: { path: string; color?: string; name: string; value: number }[] = [];
 
-	onMount(() => {
-		const countries = feature(world, world.objects.countries1);
+	onMount(() => {});
+
+	function render(width: number, height: number) {
 		world.objects.countries1.geometries.map((d) => {
 			const mission = missions.find((m) => m.countryCode === d.id);
 			d.properties.missions = mission ? mission.missions : 0;
 		});
 
-		const missionsExtent = <[number, number]>extent;
-
 		// Color using interpolateBlues with missionsExtent domain, skipping the first 25% of the scale
 		const offset = 0.5;
 		const color = scaleSequential()
-			.domain(missionsExtent)
+			.domain(<[number, number]>extent)
 			.interpolator((t) => interpolateMagma(offset + t / (1 - offset)));
 
 		const path = geoPath().projection(geoEquirectangular().fitSize([width, height], countries));
@@ -40,7 +39,13 @@
 					? '#a8a29e'
 					: color(d.properties.missions)
 		}));
-	});
+	}
+
+	const countries = feature(world, world.objects.countries1);
+
+	$: render(width, height);
+	$: width = 0;
+	$: height = 0;
 </script>
 
 <div bind:clientWidth={width} bind:clientHeight={height} class="h-64 {$$restProps.class}">

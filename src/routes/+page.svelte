@@ -101,32 +101,26 @@
 			<!-- A map showing the countries involved in space exploration over time -->
 			<div class="space-y-3">
 				<p class="text-2xl font-medium">Which countries have launched space missions?</p>
-				<div class="h-96 flex flex-col">
+				<div class="flex flex-col">
 					<div class="w-full flex justify-between">
 						<h3 class="text-xl">1965</h3>
 						<h3 class="text-xl">2022</h3>
 					</div>
 					<Juxtapose>
-						<div
-							slot="left"
-							class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
-						>
+						<div slot="left" class="w-full h-96 flex flex-col justify-center rounded">
 							<Choropleth
 								world={data.world}
 								missions={data.missions1965}
 								extent={[0, Math.max(...data.missions2022.map((d) => d.missions))]}
-								class="w-full fixed left-0 "
+								class="w-full absolute left-0"
 							/>
 						</div>
-						<div
-							slot="right"
-							class="w-full h-96 flex flex-col clip-content justify-center bg-neutral-200 rounded"
-						>
+						<div slot="right" class="w-full h-96 flex flex-col justify-center rounded">
 							<Choropleth
 								world={data.world}
 								missions={data.missions2022}
 								extent={[0, Math.max(...data.missions2022.map((d) => d.missions))]}
-								class="w-full fixed left-0"
+								class="w-full absolute right-0"
 							/>
 						</div>
 					</Juxtapose>
@@ -172,9 +166,3 @@
 		<!-- Specific detail charts -->
 	</div>
 {/if}
-
-<style>
-	.clip-content {
-		clip: rect(auto, auto, auto, auto);
-	}
-</style>

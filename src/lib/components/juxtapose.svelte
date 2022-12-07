@@ -148,29 +148,29 @@
 </script>
 
 <div
-	class="flex relative will-change-transform w-full flex-grow h-full bg-gray-100 rounded"
+	class="flex relative will-change-transform w-full flex-grow h-96 bg-gray-100 rounded"
 	style="--left-pane-size: {leftSize}%; --right-pane-size: {rightSize}%;"
 	bind:clientWidth={width}
 >
 	<div
 		bind:this={left}
-		class="pane1 absolute left-0 flex flex-col justify-center clip-content h-full"
+		class="pane1 left-0 z-20 flex flex-col justify-center clip-content bg-neutral-200 h-full"
 	>
 		<slot name="left" />
 	</div>
 	<div
-		class="h-full w-1.5 bg-slate-800 z-20 cursor-ew-resize separator"
+		class="h-full w-1.5 bg-slate-700 z-30 cursor-ew-resize separator"
 		bind:this={separator}
 		on:mousedown={mouseDown}
 		on:mouseup={mouseUp}
 	/>
 	<div
 		bind:this={right}
-		class="pane2 absolute right-0 flex flex-col justify-center clip-content h-full"
+		class="pane2 right-0 flex flex-col justify-center bg-neutral-200 clip-content h-full"
 	>
 		<slot name="right" />
 	</div>
-	<div class="absolute left-5 bottom-5 flex flex-col text-sm">
+	<div class="absolute z-30 left-5 bottom-5 flex flex-col text-sm">
 		<div class="flex items-center space-x-2">
 			<div class="rounded w-3 h-3 bg-stone-400" />
 			<p>No data</p>
@@ -191,12 +191,10 @@
 		width: var(--right-pane-size);
 		min-width: var(--min-right-pane-size);
 	}
-	.separator {
-		position: relative;
-		left: calc(var(--left-pane-size) - 1px);
-	}
+
 	.clip-content {
 		overflow: hidden;
 		clip: rect(auto, auto, auto, auto);
+		clip-path: polygon(0px 0px, 0px 100%, 100% 100%, 100% 0);
 	}
 </style>
