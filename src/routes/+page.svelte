@@ -1,12 +1,20 @@
 <script lang="ts">
 	import AxisTitles from '$lib/components/axis-titles.svelte';
+	import BarChart from '$lib/components/bar-chart.svelte';
 	import Choropleth from '$lib/components/choropleth.svelte';
 	import Juxtapose from '$lib/components/juxtapose.svelte';
 	import LineChart from '$lib/components/line-chart.svelte';
 	import Loader from '$lib/components/loader.svelte';
 	import Orbit from '$lib/components/orbit.svelte';
 	import StackedAreaChart from '$lib/components/stacked-area-chart.svelte';
-	import type { Satellite, MissionsByCountry, WorldGeoJson, TimeSeries } from '$lib/types';
+	import Treemap from '$lib/components/treemap.svelte';
+	import type {
+		Satellite,
+		MissionsByCountry,
+		WorldGeoJson,
+		TimeSeries,
+		TreemapData
+	} from '$lib/types';
 	import { onMount } from 'svelte';
 
 	let data: {
@@ -16,6 +24,9 @@
 		missions1965: MissionsByCountry[];
 		missions2022: MissionsByCountry[];
 		world: WorldGeoJson;
+		satelliteOwners: Record<string, number>;
+		satelliteCountries: Record<string, number>;
+		satelliteOwnersByCountry: TreemapData;
 	};
 
 	const loadData = async () => {
@@ -25,7 +36,10 @@
 			fetch('data/space_missions/missions_by_country_by_year.json'),
 			fetch('data/space_missions/missions_2022.json'),
 			fetch('data/space_missions/missions_1965.json'),
-			fetch('data/world-geo.json')
+			fetch('data/world-geo.json'),
+			fetch('data/satellites/satellite_owners.json'),
+			fetch('data/satellites/satellite_countries.json'),
+			fetch('data/satellites/satellite_owners_by_country.json')
 		])
 			.then((responses) => Promise.all(responses.map((r) => r.json())))
 			.then(
@@ -35,14 +49,20 @@
 					missionsOverTime,
 					missions2022,
 					missions1965,
-					world
+					world,
+					satelliteOwners,
+					satelliteCountries,
+					satelliteOwnersByCountry
 				]) => ({
 					satellites,
 					satellitesOverTime,
 					missionsOverTime,
 					missions2022,
 					missions1965,
-					world
+					world,
+					satelliteOwners,
+					satelliteCountries,
+					satelliteOwnersByCountry
 				})
 			);
 	};
@@ -168,7 +188,7 @@
 			</p>
 
 			<!-- A chart showing the top countries or organizations by the number of satellites they have in orbit -->
-			<!-- A pie chart showing the most common purposes for satellites -->
+			<Treemap data={data.satelliteOwnersByCountry} />
 		</section>
 
 		<!-- Specific detail charts -->

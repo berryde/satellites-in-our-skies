@@ -20,6 +20,10 @@ export type Satellite = {
 
 export type OrbitCategory = 'purpose' | 'orbitClass' | 'users';
 
+export type TreemapData = {
+	children: { name: string; children: { name: string; value: number }[] }[];
+};
+
 export type MissionsByCountry = {
 	country: string;
 	countryCode: string;
