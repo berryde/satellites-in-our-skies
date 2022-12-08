@@ -121,6 +121,7 @@
 		</div>
 	</AxisTitles>
 	<Legend
+		{color}
 		{keys}
 		on:mouseenter={(e) => spotlightKey(e.detail)}
 		on:mouseleave={() => restoreKeys()}

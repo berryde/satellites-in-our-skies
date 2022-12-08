@@ -50,12 +50,14 @@
 	}
 
 	function animate() {
-		setTimeout(function () {
-			requestAnimationFrame(animate);
-		}, 1000 / FPS);
+		// setTimeout(function () {
+		// 	requestAnimationFrame(animate);
+		// }, 1000 / FPS);
+		requestAnimationFrame(animate);
 		renderer.render(scene, camera);
 	}
 
+	let zoomFactor = 1;
 	function configure(width: number, height: number) {
 		if (width == 0 && height == 0) return;
 
@@ -65,11 +67,11 @@
 		const zoom = D3Zoom<HTMLCanvasElement, unknown>()
 			.scaleExtent([scaleFromZ(FAR), scaleFromZ(NEAR)])
 			.on('zoom', (e: D3ZoomEvent<HTMLCanvasElement, any>) => {
-				const scale = e.transform.k;
+				zoomFactor = e.transform.k;
 				camera.position.set(
-					(-PAN_MULTIPLIER * (e.transform.x - width / 2)) / scale,
-					(PAN_MULTIPLIER * (e.transform.y - height / 2)) / scale,
-					scaleFromZ(scale)
+					(-PAN_MULTIPLIER * (e.transform.x - width / 2)) / zoomFactor,
+					(PAN_MULTIPLIER * (e.transform.y - height / 2)) / zoomFactor,
+					scaleFromZ(zoomFactor)
 				);
 			});
 		zoom.transform(
@@ -117,54 +119,6 @@
 			)
 		);
 
-		const orbits: Record<
-			string,
-			{
-				altitude: number;
-				color: string;
-			}
-		> = {
-			GEO: {
-				altitude: 38000,
-				color: '#525252'
-			},
-			MEO: {
-				altitude: 25000,
-				color: '#737373'
-			},
-			LEO: {
-				altitude: 2000,
-				color: '#d4d4d4'
-			}
-		};
-		// Create a single point geometry
-		//TODO: add text
-
-		Object.keys(orbits).forEach((key) => {
-			const orbit = orbits[key];
-			const point = new THREE.Sprite(
-				new THREE.SpriteMaterial({ map: circleTexture, color: orbit.color, opacity: 0.2 })
-			);
-
-			// // Create:
-			// const myText = new Text();
-			// myScene.add(myText);
-
-			// // Set properties to configure:
-			// myText.text = 'Hello world!';
-			// myText.fontSize = 0.2;
-			// myText.position.z = -2;
-			// myText.color = 0x9966ff;
-
-			// // Update the rendering:
-			// myText.sync();
-
-			const diameter = scale(2 * orbit.altitude + 2 * EARTH_RADIUS);
-			point.scale.set(diameter, diameter, 1);
-			point.position.z = -DEPTH;
-			scene.add(point);
-		});
-
 		// Add the Earth to the scene
 		const planet = new THREE.Sprite(new THREE.SpriteMaterial({ map: earthTexture }));
 		planet.scale.set(scale(EARTH_RADIUS), scale(EARTH_RADIUS), 1);
@@ -196,6 +150,7 @@
 
 	$: camera = new THREE.PerspectiveCamera(FOV, width / height, NEAR, FAR);
 
+	// Map kilometers to pixels
 	$: scale = scaleLinear()
 		.domain([0, EARTH_RADIUS + Math.max(...data.map((s) => s.perigee))])
 		.range([0, 2000]);
@@ -212,15 +167,14 @@
 	$: (keys || filter) && render();
 </script>
 
-<canvas
-	bind:clientWidth={width}
-	bind:clientHeight={height}
-	bind:this={element}
-	class="w-full rounded"
-	height="250px"
-/>
-
-<div class="flex flex-col space-y-5">
+<div bind:clientWidth={width} bind:clientHeight={height} class="relative">
+	<canvas bind:this={element} class="w-full h-full rounded" height="250px" />
+	<div class="absolute flex items-center space-x-2 bottom-3 right-5 text-white z-20">
+		<p class="text-sm">{((EARTH_RADIUS * 2) / (zoomFactor / 2.47)).toFixed(0)}km</p>
+		<div class="w-full border-x border-b h-2" style="width: 100px" />
+	</div>
+</div>
+<div class="flex relative flex-col space-y-5">
 	<select bind:value={filter} class="bg-neutral-200 rounded p-1 max-w-min">
 		<option value="orbitClass">Orbit class</option>
 		<option value="purpose">Purpose</option>
