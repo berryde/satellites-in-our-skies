@@ -122,7 +122,7 @@
 	</AxisTitles>
 	<Legend
 		{color}
-		{keys}
+		keys={keys.reverse()}
 		on:mouseenter={(e) => spotlightKey(e.detail)}
 		on:mouseleave={() => restoreKeys()}
 		subtitle="Hover over a legend key to filter the chart by country. Hover over an event on the X-axis to find out more about that year."

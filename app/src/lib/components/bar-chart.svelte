@@ -10,6 +10,7 @@
 	export let data: Record<string, number> = {};
 	export let xTitle: string;
 	export let yTitle: string;
+	export let useColour: boolean = true;
 
 	const margins = {
 		top: 25,
@@ -20,6 +21,7 @@
 
 	let xAxis: SVGGElement;
 	let yAxis: SVGGElement;
+
 	let width = 0;
 	let height = 0;
 
@@ -36,10 +38,12 @@
 	$: select(yAxis).call(axisLeft(y).ticks(10));
 	$: select(xAxis).call(axisBottom(x).ticks(15));
 
-	const color = scaleOrdinal<string>().domain(Object.keys(data)).range(schemeTableau10);
+	const color = useColour
+		? scaleOrdinal<string>().domain(Object.keys(data)).range(schemeTableau10)
+		: () => schemeTableau10[0];
 </script>
 
-<AxisTitles offsetX={margins.left} offsetY={margins.top} {xTitle} {yTitle}>
+<AxisTitles {xTitle} {yTitle}>
 	<div bind:clientWidth={width} bind:clientHeight={height} class="w-full h-96">
 		<svg {width} {height} class="fill-slate-800 ">
 			<g bind:this={yAxis} transform="translate({margins.left},{0})" />
@@ -49,7 +53,7 @@
 					x={x(key)}
 					y={y(value)}
 					width={x.bandwidth()}
-					height={height - margins.bottom - y(value)}
+					height={Math.abs(height - margins.bottom - y(value))}
 					fill={color(key)}
 					class="hover:opacity-90 transition-opacity"
 				>

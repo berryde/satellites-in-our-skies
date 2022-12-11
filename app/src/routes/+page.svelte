@@ -67,10 +67,21 @@
 			);
 	};
 
+	function timeSeriesToCategorical(data: TimeSeries[]) {
+		return data.reduce((acc, curr) => {
+			acc[curr.year] = curr.count;
+			return acc;
+		}, {} as Record<string, number>);
+	}
+
 	onMount(() => {
 		loadData();
 	});
 </script>
+
+<svelte:head>
+	<title>The Satellites in Our Skies</title>
+</svelte:head>
 
 {#if !data}
 	<div class="w-full h-screen flex items-center justify-center">
@@ -96,13 +107,14 @@
 			<p>
 				By examining the satellites in orbit, the countries and organizations involved in launching
 				them, and the various purposes for which satellites are used, this data story traces the
-				development of satellite technology from its earliest beginnings to the present day.
+				development of satellite technology from its earliest beginnings to the present day, and
+				poses questions for the future.
 			</p>
 		</div>
 
 		<!-- Space missions -->
 		<section class="space-y-5">
-			<h2 class="text-3xl font-bold">The growth of the space age</h2>
+			<h2 class="text-3xl font-bold">The dawn of the space age</h2>
 			<p>
 				In the early days of the space age, the race to explore the final frontier was dominated by
 				two key players: the United States and the Soviet Union. These two superpowers competed to
@@ -112,7 +124,12 @@
 			</p>
 			<!-- A map showing the countries involved in space exploration over time -->
 			<div class="space-y-3">
-				<p class="text-2xl font-medium">Which countries have launched space missions?</p>
+				<div>
+					<p class="text-2xl font-medium">Which countries have launched space missions?</p>
+					<p class="text-slate-700">
+						The countries with space missions during the space race, compared to today.
+					</p>
+				</div>
 				<div class="flex flex-col">
 					<div class="w-full flex justify-between">
 						<h3 class="text-xl">1965</h3>
@@ -132,11 +149,11 @@
 								world={data.world}
 								missions={data.missions2022}
 								extent={[0, Math.max(...data.missions2022.map((d) => d.missions))]}
-								class="w-full absolute right-0"
+								class="w-full absolute right-0	"
 							/>
 						</div>
 					</Juxtapose>
-					<p class="text-slate-500 text-sm">
+					<p class="text-slate-600 text-sm">
 						Drag the slider to compare the two maps. Hover over a country to view the number of
 						space missions it has launched.
 					</p>
@@ -148,8 +165,11 @@
 				satellites and spacecraft.
 			</p>
 			<div class="space-y-3">
-				<p class="text-2xl font-medium">Space missions launched per year</p>
-				<StackedAreaChart data={data.missionsOverTime} />
+				<div>
+					<p class="text-2xl font-medium">Space missions launched per year</p>
+					<p class="text-slate-700">The number of space missions launched by country over time.</p>
+				</div>
+				<StackedAreaChart data={data.missionsOverTime.filter((mission) => mission.year < 2022)} />
 			</div>
 			<p>
 				In the present day, the United States and China are the two countries that have launched the
@@ -161,15 +181,14 @@
 
 		<!-- Orbit height map -->
 		<section class="space-y-5">
-			<h2 class="text-3xl font-bold">The satellites orbiting Earth</h2>
+			<h2 class="text-3xl font-bold">The rise of satellites</h2>
 			<p>
-				The satellites orbiting Earth play a vital role in our modern world, providing a wide range
-				of services and technologies that are essential to our daily lives. These man-made objects
-				can be found in a variety of orbits, ranging from low Earth orbit to geostationary orbit and
-				beyond. At any given time, there are thousands of satellites orbiting the Earth, belonging
-				to a variety of countries and organizations. Some of these satellites are owned and operated
-				by governments, while others are owned by private companies. They serve a wide range of
-				purposes, from communication and navigation to weather forecasting and Earth observation.
+				During the space race, satellites were primarily a precursor to human spaceflight. Their
+				purpose was limited - to collect limited scientific data and conduct basic imaging tasks. As
+				the world became increasingly digitized, the number of use cases and applications of
+				satellites expanded rapidly. From observing adversary actions at remote military bases to
+				broadcasting television across the globe, satellites have become an essential part of our
+				modern world.
 			</p>
 			<p>
 				The map below shows the distribution of satellites in orbit around the Earth. The different
@@ -180,17 +199,55 @@
 			<Orbit data={data.satellites} />
 
 			<p>
-				Most satellites in low Earth orbit, where they can take advantage of the lower altitude to
-				provide more precise positioning and communication services. However, there are also many
+				Most satellites are in low Earth orbit, where they can take advantage of the lower altitude
+				to provide more precise positioning and communication services. However, there are also many
 				satellites in higher orbits, such as geostationary orbit, where they can remain stationary
 				relative to the Earth's surface, providing constant coverage for satellite communication and
 				other services.
 			</p>
 
 			<!-- A chart showing the top countries or organizations by the number of satellites they have in orbit -->
+			<div>
+				<p class="text-2xl font-medium">Who owns satellites?</p>
+				<p class="text-slate-600">
+					Satellite ownership within the 10 countries with the most satellites.
+				</p>
+			</div>
 			<Treemap data={data.satelliteOwnersByCountry} />
 		</section>
 
-		<!-- Specific detail charts -->
+		<!-- The future -->
+		<section class="space-y-5">
+			<h2 class="text-3xl font-bold">The future of space exploration</h2>
+
+			<p>
+				As the space industry continues to grow, the number of countries and organizations involved
+				in space exploration will continue to expand. The future of space exploration will
+				ultimately be determined by the countries that can develop the most advanced technologies
+				and applications for satellites.
+			</p>
+
+			<div>
+				<div>
+					<p class="text-2xl font-medium">Satellite launches over time</p>
+					<p class="text-slate-700">The number of satellites launched every year since 2000.</p>
+				</div>
+				<BarChart
+					useColour={false}
+					data={timeSeriesToCategorical(
+						data.satellitesOverTime.filter((data) => data.year > 1999 && data.year < 2022)
+					)}
+					xTitle="Year"
+					yTitle="Number of satellites launched"
+				/>
+			</div>
+
+			<p>
+				Each day new mega-constellations are assembled, generational milestones are reached, records
+				are broken and our skies become increasingly clouded. At the dawn of a new space race full
+				of possibility and innovation, instead of building more powerful devices to watch the Earth
+				from afar, perhaps we should be looking beyond our skies - out towards the stars.
+			</p>
+		</section>
 	</div>
 {/if}

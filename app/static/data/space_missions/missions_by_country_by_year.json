@@ -1,1 +1,596 @@
-[{"year":1957,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":2.0,"United States":1.0},{"year":1958,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":5.0,"United States":23.0},{"year":1959,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":4.0,"United States":16.0},{"year":1960,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":9.0,"United States":30.0},{"year":1961,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":9.0,"United States":43.0},{"year":1962,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":22.0,"United States":60.0},{"year":1963,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":24.0,"United States":17.0},{"year":1964,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":0.0,"Russia":36.0,"United States":24.0},{"year":1965,"China":0.0,"France":1.0,"Japan":0.0,"Rest of world":0.0,"Russia":53.0,"United States":33.0},{"year":1966,"China":0.0,"France":1.0,"Japan":2.0,"Rest of world":0.0,"Russia":51.0,"United States":47.0},{"year":1967,"China":0.0,"France":2.0,"Japan":1.0,"Rest of world":2.0,"Russia":75.0,"United States":26.0},{"year":1968,"China":0.0,"France":0.0,"Japan":0.0,"Rest of world":1.0,"Russia":80.0,"United States":22.0},{"year":1969,"China":1.0,"France":0.0,"Japan":1.0,"Rest of world":1.0,"Russia":83.0,"United States":17.0},{"year":1970,"China":1.0,"France":2.0,"Japan":2.0,"Rest of world":3.0,"Russia":88.0,"United States":11.0},{"year":1971,"China":1.0,"France":3.0,"Japan":3.0,"Rest of world":3.0,"Russia":93.0,"United States":16.0},{"year":1972,"China":1.0,"France":0.0,"Japan":1.0,"Rest of world":1.0,"Russia":79.0,"United States":17.0},{"year":1973,"China":1.0,"France":1.0,"Japan":0.0,"Rest of world":0.0,"Russia":84.0,"United States":17.0},{"year":1974,"China":2.0,"France":0.0,"Japan":1.0,"Rest of world":2.0,"Russia":83.0,"United States":10.0},{"year":1975,"China":3.0,"France":3.0,"Japan":2.0,"Rest of world":1.0,"Russia":89.0,"United States":15.0},{"year":1976,"China":3.0,"France":0.0,"Japan":2.0,"Rest of world":0.0,"Russia":95.0,"United States":13.0},{"year":1977,"China":1.0,"France":0.0,"Japan":2.0,"Rest of world":0.0,"Russia":97.0,"United States":14.0},{"year":1978,"China":2.0,"France":0.0,"Japan":3.0,"Rest of world":0.0,"Russia":71.0,"United States":21.0},{"year":1979,"China":1.0,"France":1.0,"Japan":1.0,"Rest of world":1.0,"Russia":36.0,"United States":9.0},{"year":1980,"China":0.0,"France":1.0,"Japan":2.0,"Rest of world":1.0,"Russia":40.0,"United States":11.0},{"year":1981,"China":1.0,"France":2.0,"Japan":3.0,"Rest of world":1.0,"Russia":51.0,"United States":13.0},{"year":1982,"China":1.0,"France":1.0,"Japan":1.0,"Rest of world":0.0,"Russia":53.0,"United States":11.0},{"year":1983,"China":1.0,"France":2.0,"Japan":3.0,"Rest of world":1.0,"Russia":46.0,"United States":13.0},{"year":1984,"China":3.0,"France":4.0,"Japan":3.0,"Rest of world":0.0,"Russia":42.0,"United States":17.0},{"year":1985,"China":1.0,"France":4.0,"Japan":2.0,"Rest of world":0.0,"Russia":51.0,"United States":16.0},{"year":1986,"China":2.0,"France":3.0,"Japan":2.0,"Rest of world":0.0,"Russia":49.0,"United States":6.0},{"year":1987,"China":2.0,"France":2.0,"Japan":3.0,"Rest of world":1.0,"Russia":42.0,"United States":6.0},{"year":1988,"China":4.0,"France":7.0,"Japan":2.0,"Rest of world":3.0,"Russia":36.0,"United States":7.0},{"year":1989,"China":0.0,"France":7.0,"Japan":2.0,"Rest of world":1.0,"Russia":26.0,"United States":16.0},{"year":1990,"China":5.0,"France":6.0,"Japan":5.0,"Rest of world":1.0,"Russia":37.0,"United States":26.0},{"year":1991,"China":1.0,"France":8.0,"Japan":3.0,"Rest of world":0.0,"Russia":29.0,"United States":18.0},{"year":1992,"China":4.0,"France":7.0,"Japan":1.0,"Rest of world":0.0,"Russia":23.0,"United States":27.0},{"year":1993,"China":1.0,"France":7.0,"Japan":1.0,"Rest of world":1.0,"Russia":27.0,"United States":24.0},{"year":1994,"China":5.0,"France":8.0,"Japan":2.0,"Rest of world":2.0,"Russia":21.0,"United States":26.0},{"year":1995,"China":3.0,"France":11.0,"Japan":2.0,"Rest of world":1.0,"Russia":14.0,"United States":30.0},{"year":1996,"China":4.0,"France":11.0,"Japan":1.0,"Rest of world":1.0,"Russia":10.0,"United States":33.0},{"year":1997,"China":6.0,"France":12.0,"Japan":2.0,"Rest of world":4.0,"Russia":10.0,"United States":36.0},{"year":1998,"China":6.0,"France":11.0,"Japan":2.0,"Rest of world":2.0,"Russia":11.0,"United States":36.0},{"year":1999,"China":4.0,"France":10.0,"Japan":1.0,"Rest of world":2.0,"Russia":7.0,"United States":33.0},{"year":2000,"China":4.0,"France":12.0,"Japan":1.0,"Rest of world":0.0,"Russia":9.0,"United States":31.0},{"year":2001,"China":1.0,"France":8.0,"Japan":1.0,"Rest of world":2.0,"Russia":7.0,"United States":24.0},{"year":2002,"China":5.0,"France":12.0,"Japan":3.0,"Rest of world":2.0,"Russia":9.0,"United States":18.0},{"year":2003,"China":7.0,"France":4.0,"Japan":3.0,"Rest of world":3.0,"Russia":9.0,"United States":26.0},{"year":2004,"China":8.0,"France":3.0,"Japan":0.0,"Rest of world":2.0,"Russia":8.0,"United States":19.0},{"year":2005,"China":5.0,"France":5.0,"Japan":2.0,"Rest of world":1.0,"Russia":8.0,"United States":16.0},{"year":2006,"China":6.0,"France":5.0,"Japan":6.0,"Rest of world":1.0,"Russia":8.0,"United States":23.0},{"year":2007,"China":10.0,"France":6.0,"Japan":2.0,"Rest of world":4.0,"Russia":8.0,"United States":20.0},{"year":2008,"China":9.0,"France":6.0,"Japan":1.0,"Rest of world":4.0,"Russia":8.0,"United States":20.0},{"year":2009,"China":0.0,"France":7.0,"Japan":3.0,"Rest of world":5.0,"Russia":9.0,"United States":26.0},{"year":2010,"China":0.0,"France":6.0,"Japan":1.0,"Rest of world":5.0,"Russia":10.0,"United States":15.0},{"year":2011,"China":2.0,"France":7.0,"Japan":4.0,"Rest of world":4.0,"Russia":6.0,"United States":19.0},{"year":2012,"China":1.0,"France":10.0,"Japan":2.0,"Rest of world":8.0,"Russia":1.0,"United States":16.0},{"year":2013,"China":2.0,"France":7.0,"Japan":3.0,"Rest of world":4.0,"Russia":10.0,"United States":20.0},{"year":2014,"China":1.0,"France":11.0,"Japan":4.0,"Rest of world":6.0,"Russia":7.0,"United States":24.0},{"year":2015,"China":2.0,"France":12.0,"Japan":4.0,"Rest of world":7.0,"Russia":5.0,"United States":22.0},{"year":2016,"China":22.0,"France":11.0,"Japan":4.0,"Rest of world":9.0,"Russia":17.0,"United States":27.0},{"year":2017,"China":18.0,"France":11.0,"Japan":7.0,"Rest of world":7.0,"Russia":19.0,"United States":30.0},{"year":2018,"China":39.0,"France":11.0,"Japan":6.0,"Rest of world":10.0,"Russia":17.0,"United States":34.0},{"year":2019,"China":34.0,"France":9.0,"Japan":2.0,"Rest of world":15.0,"Russia":22.0,"United States":27.0},{"year":2020,"China":39.0,"France":7.0,"Japan":4.0,"Rest of world":12.0,"Russia":15.0,"United States":42.0},{"year":2021,"China":55.0,"France":7.0,"Japan":3.0,"Rest of world":11.0,"Russia":24.0,"United States":57.0},{"year":2022,"China":27.0,"France":3.0,"Japan":0.0,"Rest of world":9.0,"Russia":9.0,"United States":45.0}]
+[
+	{
+		"year": 1957,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 2.0,
+		"United States": 1.0
+	},
+	{
+		"year": 1958,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 5.0,
+		"United States": 23.0
+	},
+	{
+		"year": 1959,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 4.0,
+		"United States": 16.0
+	},
+	{
+		"year": 1960,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 9.0,
+		"United States": 30.0
+	},
+	{
+		"year": 1961,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 9.0,
+		"United States": 43.0
+	},
+	{
+		"year": 1962,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 22.0,
+		"United States": 60.0
+	},
+	{
+		"year": 1963,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 24.0,
+		"United States": 17.0
+	},
+	{
+		"year": 1964,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 36.0,
+		"United States": 24.0
+	},
+	{
+		"year": 1965,
+		"China": 0.0,
+		"France": 1.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 53.0,
+		"United States": 33.0
+	},
+	{
+		"year": 1966,
+		"China": 0.0,
+		"France": 1.0,
+		"Japan": 2.0,
+		"Rest of world": 0.0,
+		"Russia": 51.0,
+		"United States": 47.0
+	},
+	{
+		"year": 1967,
+		"China": 0.0,
+		"France": 2.0,
+		"Japan": 1.0,
+		"Rest of world": 2.0,
+		"Russia": 75.0,
+		"United States": 26.0
+	},
+	{
+		"year": 1968,
+		"China": 0.0,
+		"France": 0.0,
+		"Japan": 0.0,
+		"Rest of world": 1.0,
+		"Russia": 80.0,
+		"United States": 22.0
+	},
+	{
+		"year": 1969,
+		"China": 1.0,
+		"France": 0.0,
+		"Japan": 1.0,
+		"Rest of world": 1.0,
+		"Russia": 83.0,
+		"United States": 17.0
+	},
+	{
+		"year": 1970,
+		"China": 1.0,
+		"France": 2.0,
+		"Japan": 2.0,
+		"Rest of world": 3.0,
+		"Russia": 88.0,
+		"United States": 11.0
+	},
+	{
+		"year": 1971,
+		"China": 1.0,
+		"France": 3.0,
+		"Japan": 3.0,
+		"Rest of world": 3.0,
+		"Russia": 93.0,
+		"United States": 16.0
+	},
+	{
+		"year": 1972,
+		"China": 1.0,
+		"France": 0.0,
+		"Japan": 1.0,
+		"Rest of world": 1.0,
+		"Russia": 79.0,
+		"United States": 17.0
+	},
+	{
+		"year": 1973,
+		"China": 1.0,
+		"France": 1.0,
+		"Japan": 0.0,
+		"Rest of world": 0.0,
+		"Russia": 84.0,
+		"United States": 17.0
+	},
+	{
+		"year": 1974,
+		"China": 2.0,
+		"France": 0.0,
+		"Japan": 1.0,
+		"Rest of world": 2.0,
+		"Russia": 83.0,
+		"United States": 10.0
+	},
+	{
+		"year": 1975,
+		"China": 3.0,
+		"France": 3.0,
+		"Japan": 2.0,
+		"Rest of world": 1.0,
+		"Russia": 89.0,
+		"United States": 15.0
+	},
+	{
+		"year": 1976,
+		"China": 3.0,
+		"France": 0.0,
+		"Japan": 2.0,
+		"Rest of world": 0.0,
+		"Russia": 95.0,
+		"United States": 13.0
+	},
+	{
+		"year": 1977,
+		"China": 1.0,
+		"France": 0.0,
+		"Japan": 2.0,
+		"Rest of world": 0.0,
+		"Russia": 97.0,
+		"United States": 14.0
+	},
+	{
+		"year": 1978,
+		"China": 2.0,
+		"France": 0.0,
+		"Japan": 3.0,
+		"Rest of world": 0.0,
+		"Russia": 71.0,
+		"United States": 21.0
+	},
+	{
+		"year": 1979,
+		"China": 1.0,
+		"France": 1.0,
+		"Japan": 1.0,
+		"Rest of world": 1.0,
+		"Russia": 36.0,
+		"United States": 9.0
+	},
+	{
+		"year": 1980,
+		"China": 0.0,
+		"France": 1.0,
+		"Japan": 2.0,
+		"Rest of world": 1.0,
+		"Russia": 40.0,
+		"United States": 11.0
+	},
+	{
+		"year": 1981,
+		"China": 1.0,
+		"France": 2.0,
+		"Japan": 3.0,
+		"Rest of world": 1.0,
+		"Russia": 51.0,
+		"United States": 13.0
+	},
+	{
+		"year": 1982,
+		"China": 1.0,
+		"France": 1.0,
+		"Japan": 1.0,
+		"Rest of world": 0.0,
+		"Russia": 53.0,
+		"United States": 11.0
+	},
+	{
+		"year": 1983,
+		"China": 1.0,
+		"France": 2.0,
+		"Japan": 3.0,
+		"Rest of world": 1.0,
+		"Russia": 46.0,
+		"United States": 13.0
+	},
+	{
+		"year": 1984,
+		"China": 3.0,
+		"France": 4.0,
+		"Japan": 3.0,
+		"Rest of world": 0.0,
+		"Russia": 42.0,
+		"United States": 17.0
+	},
+	{
+		"year": 1985,
+		"China": 1.0,
+		"France": 4.0,
+		"Japan": 2.0,
+		"Rest of world": 0.0,
+		"Russia": 51.0,
+		"United States": 16.0
+	},
+	{
+		"year": 1986,
+		"China": 2.0,
+		"France": 3.0,
+		"Japan": 2.0,
+		"Rest of world": 0.0,
+		"Russia": 49.0,
+		"United States": 6.0
+	},
+	{
+		"year": 1987,
+		"China": 2.0,
+		"France": 2.0,
+		"Japan": 3.0,
+		"Rest of world": 1.0,
+		"Russia": 42.0,
+		"United States": 6.0
+	},
+	{
+		"year": 1988,
+		"China": 4.0,
+		"France": 7.0,
+		"Japan": 2.0,
+		"Rest of world": 3.0,
+		"Russia": 36.0,
+		"United States": 7.0
+	},
+	{
+		"year": 1989,
+		"China": 0.0,
+		"France": 7.0,
+		"Japan": 2.0,
+		"Rest of world": 1.0,
+		"Russia": 26.0,
+		"United States": 16.0
+	},
+	{
+		"year": 1990,
+		"China": 5.0,
+		"France": 6.0,
+		"Japan": 5.0,
+		"Rest of world": 1.0,
+		"Russia": 37.0,
+		"United States": 26.0
+	},
+	{
+		"year": 1991,
+		"China": 1.0,
+		"France": 8.0,
+		"Japan": 3.0,
+		"Rest of world": 0.0,
+		"Russia": 29.0,
+		"United States": 18.0
+	},
+	{
+		"year": 1992,
+		"China": 4.0,
+		"France": 7.0,
+		"Japan": 1.0,
+		"Rest of world": 0.0,
+		"Russia": 23.0,
+		"United States": 27.0
+	},
+	{
+		"year": 1993,
+		"China": 1.0,
+		"France": 7.0,
+		"Japan": 1.0,
+		"Rest of world": 1.0,
+		"Russia": 27.0,
+		"United States": 24.0
+	},
+	{
+		"year": 1994,
+		"China": 5.0,
+		"France": 8.0,
+		"Japan": 2.0,
+		"Rest of world": 2.0,
+		"Russia": 21.0,
+		"United States": 26.0
+	},
+	{
+		"year": 1995,
+		"China": 3.0,
+		"France": 11.0,
+		"Japan": 2.0,
+		"Rest of world": 1.0,
+		"Russia": 14.0,
+		"United States": 30.0
+	},
+	{
+		"year": 1996,
+		"China": 4.0,
+		"France": 11.0,
+		"Japan": 1.0,
+		"Rest of world": 1.0,
+		"Russia": 10.0,
+		"United States": 33.0
+	},
+	{
+		"year": 1997,
+		"China": 6.0,
+		"France": 12.0,
+		"Japan": 2.0,
+		"Rest of world": 4.0,
+		"Russia": 10.0,
+		"United States": 36.0
+	},
+	{
+		"year": 1998,
+		"China": 6.0,
+		"France": 11.0,
+		"Japan": 2.0,
+		"Rest of world": 2.0,
+		"Russia": 11.0,
+		"United States": 36.0
+	},
+	{
+		"year": 1999,
+		"China": 4.0,
+		"France": 10.0,
+		"Japan": 1.0,
+		"Rest of world": 2.0,
+		"Russia": 7.0,
+		"United States": 33.0
+	},
+	{
+		"year": 2000,
+		"China": 4.0,
+		"France": 12.0,
+		"Japan": 1.0,
+		"Rest of world": 0.0,
+		"Russia": 9.0,
+		"United States": 31.0
+	},
+	{
+		"year": 2001,
+		"China": 1.0,
+		"France": 8.0,
+		"Japan": 1.0,
+		"Rest of world": 2.0,
+		"Russia": 7.0,
+		"United States": 24.0
+	},
+	{
+		"year": 2002,
+		"China": 5.0,
+		"France": 12.0,
+		"Japan": 3.0,
+		"Rest of world": 2.0,
+		"Russia": 9.0,
+		"United States": 18.0
+	},
+	{
+		"year": 2003,
+		"China": 7.0,
+		"France": 4.0,
+		"Japan": 3.0,
+		"Rest of world": 3.0,
+		"Russia": 9.0,
+		"United States": 26.0
+	},
+	{
+		"year": 2004,
+		"China": 8.0,
+		"France": 3.0,
+		"Japan": 0.0,
+		"Rest of world": 2.0,
+		"Russia": 8.0,
+		"United States": 19.0
+	},
+	{
+		"year": 2005,
+		"China": 5.0,
+		"France": 5.0,
+		"Japan": 2.0,
+		"Rest of world": 1.0,
+		"Russia": 8.0,
+		"United States": 16.0
+	},
+	{
+		"year": 2006,
+		"China": 6.0,
+		"France": 5.0,
+		"Japan": 6.0,
+		"Rest of world": 1.0,
+		"Russia": 8.0,
+		"United States": 23.0
+	},
+	{
+		"year": 2007,
+		"China": 10.0,
+		"France": 6.0,
+		"Japan": 2.0,
+		"Rest of world": 4.0,
+		"Russia": 8.0,
+		"United States": 20.0
+	},
+	{
+		"year": 2008,
+		"China": 9.0,
+		"France": 6.0,
+		"Japan": 1.0,
+		"Rest of world": 4.0,
+		"Russia": 8.0,
+		"United States": 20.0
+	},
+	{
+		"year": 2009,
+		"China": 0.0,
+		"France": 7.0,
+		"Japan": 3.0,
+		"Rest of world": 5.0,
+		"Russia": 9.0,
+		"United States": 26.0
+	},
+	{
+		"year": 2010,
+		"China": 0.0,
+		"France": 6.0,
+		"Japan": 1.0,
+		"Rest of world": 5.0,
+		"Russia": 10.0,
+		"United States": 15.0
+	},
+	{
+		"year": 2011,
+		"China": 2.0,
+		"France": 7.0,
+		"Japan": 4.0,
+		"Rest of world": 4.0,
+		"Russia": 6.0,
+		"United States": 19.0
+	},
+	{
+		"year": 2012,
+		"China": 1.0,
+		"France": 10.0,
+		"Japan": 2.0,
+		"Rest of world": 8.0,
+		"Russia": 1.0,
+		"United States": 16.0
+	},
+	{
+		"year": 2013,
+		"China": 2.0,
+		"France": 7.0,
+		"Japan": 3.0,
+		"Rest of world": 4.0,
+		"Russia": 10.0,
+		"United States": 20.0
+	},
+	{
+		"year": 2014,
+		"China": 1.0,
+		"France": 11.0,
+		"Japan": 4.0,
+		"Rest of world": 6.0,
+		"Russia": 7.0,
+		"United States": 24.0
+	},
+	{
+		"year": 2015,
+		"China": 2.0,
+		"France": 12.0,
+		"Japan": 4.0,
+		"Rest of world": 7.0,
+		"Russia": 5.0,
+		"United States": 22.0
+	},
+	{
+		"year": 2016,
+		"China": 22.0,
+		"France": 11.0,
+		"Japan": 4.0,
+		"Rest of world": 9.0,
+		"Russia": 17.0,
+		"United States": 27.0
+	},
+	{
+		"year": 2017,
+		"China": 18.0,
+		"France": 11.0,
+		"Japan": 7.0,
+		"Rest of world": 7.0,
+		"Russia": 19.0,
+		"United States": 30.0
+	},
+	{
+		"year": 2018,
+		"China": 39.0,
+		"France": 11.0,
+		"Japan": 6.0,
+		"Rest of world": 10.0,
+		"Russia": 17.0,
+		"United States": 34.0
+	},
+	{
+		"year": 2019,
+		"China": 34.0,
+		"France": 9.0,
+		"Japan": 2.0,
+		"Rest of world": 15.0,
+		"Russia": 22.0,
+		"United States": 27.0
+	},
+	{
+		"year": 2020,
+		"China": 39.0,
+		"France": 7.0,
+		"Japan": 4.0,
+		"Rest of world": 12.0,
+		"Russia": 15.0,
+		"United States": 42.0
+	},
+	{
+		"year": 2021,
+		"China": 55.0,
+		"France": 7.0,
+		"Japan": 3.0,
+		"Rest of world": 11.0,
+		"Russia": 24.0,
+		"United States": 57.0
+	},
+	{
+		"year": 2022,
+		"China": 27.0,
+		"France": 3.0,
+		"Japan": 0.0,
+		"Rest of world": 9.0,
+		"Russia": 9.0,
+		"United States": 45.0
+	}
+]

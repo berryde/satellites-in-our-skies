@@ -8,7 +8,7 @@
 	import { schemeTableau10 } from 'd3-scale-chromatic';
 	import seedrandom from 'seedrandom';
 	import Legend from './legend.svelte';
-	import { FPS, OrbitCategories } from '$lib/constants';
+	import { OrbitCategories } from '$lib/constants';
 
 	export let data: Satellite[];
 	let filter: OrbitCategory = 'orbitClass';
@@ -165,26 +165,39 @@
 	$: configure(width, height);
 
 	$: (keys || filter) && render();
+
+	function parseFilter(filter: string) {
+		// Convert the camelcase filter to a human readable string
+		return filter.replace(/([A-Z])/g, ' $1').toLowerCase();
+	}
 </script>
 
+<div>
+	<div class="flex space-x-2 text-2xl font-medium">
+		<p>The</p>
+		<select bind:value={filter} class="rounded bg-neutral-200 max-w-min">
+			<option value="orbitClass">Orbit class</option>
+			<option value="purpose">Purpose</option>
+			<option value="users">Users</option>
+		</select>
+		<p>of the satellites orbiting Earth</p>
+	</div>
+	<p class="text-slate-600">A categorised, to-scale view of satellites from space.</p>
+</div>
 <div bind:clientWidth={width} bind:clientHeight={height} class="relative">
 	<canvas bind:this={element} class="w-full h-full rounded" height="250px" />
 	<div class="absolute flex items-center space-x-2 bottom-3 right-5 text-white z-20">
 		<p class="text-sm">{((EARTH_RADIUS * 2) / (zoomFactor / 2.47)).toFixed(0)}km</p>
-		<div class="w-full border-x border-b h-2" style="width: 100px" />
+		<div class="border-x border-b h-2" style="width: 100px" />
 	</div>
 </div>
 <div class="flex relative flex-col space-y-5">
-	<select bind:value={filter} class="bg-neutral-200 rounded p-1 max-w-min">
-		<option value="orbitClass">Orbit class</option>
-		<option value="purpose">Purpose</option>
-		<option value="users">Users</option>
-	</select>
 	<Legend
 		{color}
 		keys={OrbitCategories[filter]}
 		disabledKeys={OrbitCategories[filter].filter((key) => !keys.has(key))}
 		on:click={(e) => setKeys(e.detail)}
-		subtitle="Click on a legend key to toggle visibility"
+		subtitle="Click on a legend key to toggle visibility. Zoom and pan to explore the
+		visualisation."
 	/>
 </div>
