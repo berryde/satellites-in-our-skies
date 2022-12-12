@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { extent, max } from 'd3-array';
-	import { scaleBand, scaleLinear, scaleOrdinal, scaleTime } from 'd3-scale';
+	import { max } from 'd3-array';
+	import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
 	import { select } from 'd3';
 	import { axisBottom, axisLeft } from 'd3-axis';
 	import { schemeTableau10 } from 'd3-scale-chromatic';
-	import { timeline } from '$lib/constants';
 	import AxisTitles from './axis-titles.svelte';
 
 	export let data: Record<string, number> = {};
@@ -14,7 +13,7 @@
 
 	const margins = {
 		top: 25,
-		left: 50,
+		left: 70,
 		right: 25,
 		bottom: 25
 	};
@@ -43,7 +42,7 @@
 		: () => schemeTableau10[0];
 </script>
 
-<AxisTitles {xTitle} {yTitle}>
+<AxisTitles {xTitle} {yTitle} offsetX={20}>
 	<div bind:clientWidth={width} bind:clientHeight={height} class="w-full h-96">
 		<svg {width} {height} class="fill-slate-800 ">
 			<g bind:this={yAxis} transform="translate({margins.left},{0})" />

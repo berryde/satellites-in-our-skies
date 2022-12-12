@@ -1,9 +1,7 @@
 <script lang="ts">
-	import AxisTitles from '$lib/components/axis-titles.svelte';
 	import BarChart from '$lib/components/bar-chart.svelte';
 	import Choropleth from '$lib/components/choropleth.svelte';
 	import Juxtapose from '$lib/components/juxtapose.svelte';
-	import LineChart from '$lib/components/line-chart.svelte';
 	import Loader from '$lib/components/loader.svelte';
 	import Orbit from '$lib/components/orbit.svelte';
 	import StackedAreaChart from '$lib/components/stacked-area-chart.svelte';

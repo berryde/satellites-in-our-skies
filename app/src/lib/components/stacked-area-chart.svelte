@@ -26,7 +26,7 @@
 	const stacked = stack().keys(keys)(data);
 	const margins = {
 		top: 10,
-		left: 30,
+		left: 60,
 		right: 2,
 		bottom: 25
 	};
@@ -82,7 +82,7 @@
 	<AxisTitles
 		xTitle="Year"
 		yTitle="Number of space missions"
-		offsetX={margins.left}
+		offsetX={margins.left / 2}
 		offsetY={margins.top}
 	>
 		<div bind:clientWidth={width} bind:clientHeight={height} class="w-full h-96">

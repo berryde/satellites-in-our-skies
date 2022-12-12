@@ -185,7 +185,7 @@
 	<p class="text-slate-600">A categorised, to-scale view of satellites from space.</p>
 </div>
 <div bind:clientWidth={width} bind:clientHeight={height} class="relative">
-	<canvas bind:this={element} class="w-full h-full rounded" height="250px" />
+	<canvas bind:this={element} class="w-full h-full rounded" height="150rem"/>
 	<div class="absolute flex items-center space-x-2 bottom-3 right-5 text-white z-20">
 		<p class="text-sm">{((EARTH_RADIUS * 2) / (zoomFactor / 2.47)).toFixed(0)}km</p>
 		<div class="border-x border-b h-2" style="width: 100px" />
