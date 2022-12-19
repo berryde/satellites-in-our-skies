@@ -208,10 +208,19 @@
 			<div>
 				<p class="text-2xl font-medium">Who owns satellites?</p>
 				<p class="text-slate-600">
-					Satellite ownership within the 10 countries with the most satellites.
+					Satellite ownership within the countries and corporations with at least 15 satellites.
 				</p>
 			</div>
 			<Treemap data={data.satelliteOwnersByCountry} />
+
+			<p>
+				While SpaceX owns almost half of the satellites in space, many organisations own just one or
+				two satellites. Although spaceflight is democratized in the sense that anyone can launch a
+				satellite with the appropriate national permissions, it is also a free market that can be
+				exploited by a select few companies with disproportionate means and abilities to launch
+				satellites. How many stakeholders have a representational input in the quantities and
+				purposes of satellites that are launched every year?
+			</p>
 		</section>
 
 		<!-- The future -->
@@ -227,7 +236,7 @@
 
 			<div>
 				<div>
-					<p class="text-2xl font-medium">Satellite launches over time</p>
+					<p class="text-2xl font-medium">Satellites launched per year</p>
 					<p class="text-slate-700">The number of satellites launched every year since 2000.</p>
 				</div>
 				<BarChart

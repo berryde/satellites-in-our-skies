@@ -1,6 +1,5 @@
 <!-- Compare 2 abitrary divs with a split-pane -->
 <script lang="ts">
-	import { FPS } from '$lib/constants';
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 
 	/**
@@ -91,7 +90,7 @@
 			debouncing = true;
 			setTimeout(function () {
 				debouncing = false;
-			}, 1000 / FPS);
+			}, 1000 / 60);
 		}
 	}
 

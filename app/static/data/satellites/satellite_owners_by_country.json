@@ -1,1 +1,64 @@
-{"children": [{"name": "USA", "children": [{"name": "SpaceX", "value": 2219}, {"name": "Planet Labs, Inc.", "value": 215}, {"name": "Swarm Technologies", "value": 151}, {"name": "Spire Global Inc.", "value": 124}, {"name": "Iridium Communications, Inc.", "value": 75}, {"name": "National Reconnaissance Office (NRO)", "value": 43}, {"name": "ORBCOMM Inc.", "value": 35}, {"name": "DoD/US Air Force", "value": 34}, {"name": "Intelsat S.A.", "value": 32}, {"name": "Globalstar", "value": 32}, {"name": "US Air Force", "value": 25}, {"name": "National Aeronautics and Space Administration (NASA)", "value": 24}, {"name": "Aerospace Corporation", "value": 17}, {"name": "BlackSky Global", "value": 14}, {"name": "National Reconnaissance Office (NRO)/US Air Force", "value": 14}, {"name": "National Reconnaissance Office (NRO)/US Navy", "value": 12}, {"name": "HawkEye 360", "value": 12}, {"name": "Tyvak Nanosatellite Systems, Inc.", "value": 12}, {"name": "Echostar Satellite Services, LLC", "value": 11}, {"name": "Defense Advanced Research Projects Agency (DARPA)", "value": 11}, {"name": "Military Satellite Communications - US Air Force", "value": 10}, {"name": "Los Alamos National Laboratory", "value": 10}, {"name": "DirecTV, Inc.", "value": 10}, {"name": "PanAmSat (Intelsat S.A.)", "value": 9}, {"name": "US Army Space and Missile Defense Command", "value": 8}, {"name": "Astro Digital", "value": 8}, {"name": "University of Michigan/NASA Earth Science Technology Office", "value": 8}, {"name": "Capella Space", "value": 8}, {"name": "SES S.A.", "value": 8}, {"name": "Sirius XM Holdings", "value": 7}, {"name": "US Navy", "value": 6}, {"name": "GeoOptics Inc.", "value": 6}, {"name": "DoD/NOAA", "value": 5}, {"name": "Air Force Satellite Control Network", "value": 5}, {"name": "DoD/US Navy", "value": 5}, {"name": "NOAA (National Oceanographic and Atmospheric Administration)", "value": 5}]}, {"name": "China", "children": [{"name": "Chinese Ministry of National Defense", "value": 135}, {"name": "China Academy of Space Technology (CAST)", "value": 44}, {"name": "Chang Guang Satellite Technology Co. Ltd.", "value": 44}, {"name": "China Aerospace Science and Technology Corp. (CASC)", "value": 18}, {"name": "China National Academy of Sciences (CNSAS)", "value": 17}, {"name": "Shanghai Academy of Spaceflight Technology", "value": 16}, {"name": "Guodian Gaoke", "value": 15}, {"name": "China Satellite Communication Corp. (China Satcom)", "value": 15}, {"name": "Unknown", "value": 11}, {"name": "Ningxia Jingui Information Technology Co. Ltd.", "value": 10}, {"name": "China Meteorological Administration", "value": 10}, {"name": "Chinese Academy of Sciences", "value": 10}, {"name": "Zhuhai Orbita Control Engineering Co. Ltd.", "value": 8}, {"name": "People's Liberation Army (C41)", "value": 8}, {"name": "HEAD Aerospace", "value": 7}, {"name": "State Oceanic Administration (SOA)", "value": 7}, {"name": "Beijing Commsat Technology Development Co. Ltd.", "value": 7}, {"name": "China Centre for Resources Satellite Data and Application (CRESDA)", "value": 7}, {"name": "Galaxy Space", "value": 6}, {"name": "Spacety Aerospace Company", "value": 6}, {"name": "Chinese Amateur Satellite (CAMSAT)", "value": 5}, {"name": "Asia Satellite Telecommunications Co. Ltd.", "value": 5}, {"name": "Zhejiang University", "value": 5}, {"name": "China\u0092s Ministry of Land and Resources, Ministry of Environmental Protection, and Ministry of Agriculture", "value": 5}]}, {"name": "United Kingdom", "children": [{"name": "OneWeb Satellites", "value": 427}, {"name": "O3b Networks Ltd.", "value": 20}, {"name": "INMARSAT, Ltd.", "value": 10}, {"name": "Surrey Satellite Technology Ltd.", "value": 6}]}, {"name": "Russia", "children": [{"name": "Ministry of Defense (Russia)", "value": 96}, {"name": "Gonets Satcom", "value": 18}, {"name": "Russian Satellite Communications Company", "value": 14}, {"name": "Military Space Forces (VKS)", "value": 7}, {"name": "Russian Federal Space Agency", "value": 6}, {"name": "Gazprom Space Systems", "value": 5}, {"name": "Roscosmos State Corporation", "value": 5}, {"name": "Moscow State University", "value": 5}]}, {"name": "Multinational", "children": [{"name": "European Space Agency (ESA)", "value": 40}, {"name": "EUTELSAT S.A.", "value": 26}, {"name": "EUMETSAT (European Organization for the Exploitation of Meteorological Satellites)", "value": 12}, {"name": "Arab Satellite Communications Org. (ASCO)", "value": 7}, {"name": "Asia Broadcast Satellite Ltd.", "value": 5}]}, {"name": "Japan", "children": [{"name": "Japan Aerospace Exploration Agency (JAXA)", "value": 13}, {"name": "Cabinet Satellite Intelligence Center (CSIC)", "value": 11}, {"name": "Sky Perfect JSAT Corporation", "value": 10}, {"name": "Axelspace", "value": 5}]}, {"name": "India", "children": [{"name": "Indian Space Research Organization (ISRO)", "value": 45}, {"name": "Ministry of Defense (India)", "value": 5}]}, {"name": "Canada", "children": [{"name": "Kepler Communications", "value": 18}, {"name": "Telesat Canada Ltd. (BCE, Inc.)", "value": 12}, {"name": "Canadian Space Agency", "value": 7}, {"name": "University of Toronto, Institute for Aerospace Studies", "value": 5}]}, {"name": "Germany", "children": [{"name": "Technical University Berlin", "value": 12}, {"name": "Armed Forces", "value": 7}]}]}
+{
+	"children": [
+		{
+			"name": "USA",
+			"children": [
+				{ "name": "SpaceX", "value": 2219 },
+				{ "name": "Planet Labs, Inc.", "value": 215 },
+				{ "name": "Swarm Technologies", "value": 151 },
+				{ "name": "Spire Global Inc.", "value": 124 },
+				{ "name": "Iridium Communications, Inc.", "value": 75 },
+				{ "name": "National Reconnaissance Office (NRO)", "value": 43 },
+				{ "name": "ORBCOMM Inc.", "value": 35 },
+				{ "name": "DoD/US Air Force", "value": 34 },
+				{ "name": "Intelsat S.A.", "value": 32 },
+				{ "name": "Globalstar", "value": 32 },
+				{ "name": "US Air Force", "value": 25 },
+				{ "name": "National Aeronautics and Space Administration (NASA)", "value": 24 },
+				{ "name": "Aerospace Corporation", "value": 17 }
+			]
+		},
+		{
+			"name": "China",
+			"children": [
+				{ "name": "Chinese Ministry of National Defense", "value": 135 },
+				{ "name": "China Academy of Space Technology (CAST)", "value": 44 },
+				{ "name": "Chang Guang Satellite Technology Co. Ltd.", "value": 44 },
+				{ "name": "China Aerospace Science and Technology Corp. (CASC)", "value": 18 },
+				{ "name": "China National Academy of Sciences (CNSAS)", "value": 17 },
+				{ "name": "Shanghai Academy of Spaceflight Technology", "value": 16 },
+				{ "name": "Guodian Gaoke", "value": 15 },
+				{ "name": "China Satellite Communication Corp. (China Satcom)", "value": 15 }
+			]
+		},
+		{
+			"name": "United Kingdom",
+			"children": [
+				{ "name": "OneWeb Satellites", "value": 427 },
+				{ "name": "O3b Networks Ltd.", "value": 20 }
+			]
+		},
+		{
+			"name": "Russia",
+			"children": [
+				{ "name": "Ministry of Defense (Russia)", "value": 96 },
+				{ "name": "Gonets Satcom", "value": 18 }
+			]
+		},
+		{
+			"name": "Multinational",
+			"children": [
+				{ "name": "European Space Agency (ESA)", "value": 40 },
+				{ "name": "EUTELSAT S.A.", "value": 26 }
+			]
+		},
+		{
+			"name": "India",
+			"children": [{ "name": "Indian Space Research Organization (ISRO)", "value": 45 }]
+		},
+		{ "name": "Canada", "children": [{ "name": "Kepler Communications", "value": 18 }] },
+		{ "name": "Luxembourg", "children": [{ "name": "SES S.A.", "value": 28 }] },
+		{ "name": "Argentina", "children": [{ "name": "Satellogic S.A.", "value": 26 }] },
+		{ "name": "Other", "children": [{ "name": "Other", "value": 1393 }] }
+	]
+}

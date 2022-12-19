@@ -33,7 +33,7 @@
 	});
 
 	let width = 0;
-	let height = 0;
+	let height = '150rem';
 	let element: HTMLElement;
 
 	const randomPosition = (r: number) => {
@@ -165,27 +165,22 @@
 	$: configure(width, height);
 
 	$: (keys || filter) && render();
-
-	function parseFilter(filter: string) {
-		// Convert the camelcase filter to a human readable string
-		return filter.replace(/([A-Z])/g, ' $1').toLowerCase();
-	}
 </script>
 
 <div>
 	<div class="flex space-x-2 text-2xl font-medium">
 		<p>The</p>
 		<select bind:value={filter} class="rounded bg-neutral-200 max-w-min">
-			<option value="orbitClass">Orbit class</option>
-			<option value="purpose">Purpose</option>
-			<option value="users">Users</option>
+			<option value="orbitClass">orbit class</option>
+			<option value="purpose">purposes</option>
+			<option value="users">users</option>
 		</select>
 		<p>of the satellites orbiting Earth</p>
 	</div>
 	<p class="text-slate-600">A categorised, to-scale view of satellites from space.</p>
 </div>
 <div bind:clientWidth={width} bind:clientHeight={height} class="relative">
-	<canvas bind:this={element} class="w-full h-full rounded" height="150rem"/>
+	<canvas bind:this={element} class="w-full h-full rounded" />
 	<div class="absolute flex items-center space-x-2 bottom-3 right-5 text-white z-20">
 		<p class="text-sm">{((EARTH_RADIUS * 2) / (zoomFactor / 2.47)).toFixed(0)}km</p>
 		<div class="border-x border-b h-2" style="width: 100px" />

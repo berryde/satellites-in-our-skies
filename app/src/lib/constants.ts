@@ -11,8 +11,6 @@ export const OrbitCategories = {
 	users: ['Commercial', 'Civil', 'Government', 'Military', 'Other']
 };
 
-export const FPS = 60;
-
 export const timeline: { name: string; year: number }[] = [
 	{
 		name: 'First photograph of Earth from space',

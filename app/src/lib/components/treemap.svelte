@@ -45,7 +45,9 @@
 						leaf.parent.data.name
 					)};"
 					class="absolute overflow-hidden cursor-pointer p-1 hover:opacity-75 transition-opacity"
-					title="{leaf.data.name} owns {leaf.data.value} satellites ({percentage(leaf.data.value)}%)"
+					title="{leaf.data.name} owns {leaf.data.value} satellites ({percentage(
+						leaf.data.value
+					)}%)"
 				>
 					<div class="text-xs font-medium">
 						<p>{percentage(leaf.data.value)}% {leaf.data.name}</p>
