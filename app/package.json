@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && cp INSTRUCTIONS.md build/INSTRUCTIONS.md && zip -r data-story build",
+		"build": "vite build && cp INSTRUCTIONS.md build/INSTRUCTIONS.md && cd build && zip -r ../submission.zip *",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
