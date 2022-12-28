@@ -12,7 +12,10 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter(),
+		// it will run on localhost port 8080
+		adapter: adapter({
+			fallback: 'index.html'
+		}),
 		alias: {
 			$lib: './src/lib',
 			$components: './src/components',

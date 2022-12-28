@@ -21,8 +21,8 @@
 	const DEPTH = 0;
 
 	const scene = new THREE.Scene();
-	const earthTexture = new THREE.TextureLoader().load('earth.png');
-	const circleTexture = new THREE.TextureLoader().load('circle-sprite.png');
+	const earthTexture = new THREE.TextureLoader().load('images/earth.png');
+	const circleTexture = new THREE.TextureLoader().load('images/circle-sprite.png');
 	const rng = seedrandom('satellite');
 	const circle = new THREE.PointsMaterial({
 		size: 8,
@@ -33,7 +33,7 @@
 	});
 
 	let width = 0;
-	let height = '150rem';
+	let height = 0;
 	let element: HTMLElement;
 
 	const randomPosition = (r: number) => {

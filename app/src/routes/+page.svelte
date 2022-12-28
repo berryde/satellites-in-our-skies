@@ -98,14 +98,14 @@
 			<p>
 				Satellites have become an integral part of our modern world, providing us with a wide range
 				of services and technologies that are essential to our daily lives. From communication and
-				navigation, to weather forecasting and Earth observation, these man-made objects play a
-				vital role in our global society. But how did we come to have so many satellites orbiting
-				Earth, and what are they used for?
+				navigation to weather forecasting and Earth observation, these man-made objects play a vital
+				role in our global society. But how did we come to have so many satellites orbiting Earth,
+				and what are they used for?
 			</p>
 			<p>
 				By examining the satellites in orbit, the countries and organizations involved in launching
 				them, and the various purposes for which satellites are used, this data story traces the
-				development of satellite technology from its earliest beginnings to the present day, and
+				development of satellite technology from its earliest beginnings to the present day and
 				poses questions for the future.
 			</p>
 		</div>
@@ -159,7 +159,7 @@
 			</div>
 			<p>
 				Today, the space industry is a multi-billion pound enterprise, with countries, and
-				increasingly organizations from around the world competing to launch the next generation of
+				increasingly organizations, from around the world competing to launch the next generation of
 				satellites and spacecraft.
 			</p>
 			<div class="space-y-3">
@@ -190,7 +190,7 @@
 			</p>
 			<p>
 				The map below shows the distribution of satellites in orbit around the Earth. The different
-				colors represent the various orbits in which satellites can be found. The size of each dot
+				colours represent the various orbits in which satellites can be found. The size of each dot
 				represents the relative size of the satellite.
 			</p>
 
@@ -218,8 +218,8 @@
 				two satellites. Although spaceflight is democratized in the sense that anyone can launch a
 				satellite with the appropriate national permissions, it is also a free market that can be
 				exploited by a select few companies with disproportionate means and abilities to launch
-				satellites. How many stakeholders have a representational input in the quantities and
-				purposes of satellites that are launched every year?
+				satellites. How many stakeholders have representational input in the quantities and purposes
+				of satellites that are launched every year?
 			</p>
 		</section>
 
