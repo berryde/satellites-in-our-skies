@@ -14,8 +14,7 @@ const config = {
 	kit: {
 		// it will run on localhost port 8080
 		adapter: adapter({
-			fallback: 'index.html',
-			precompress: true
+			fallback: 'index.html'
 		}),
 		alias: {
 			$lib: './src/lib',
