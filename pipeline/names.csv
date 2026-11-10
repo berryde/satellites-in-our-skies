@@ -1,0 +1,59 @@
+kind,code,name
+country,US,United States
+country,SU,Soviet Union
+country,CN,China
+country,RU,Russia
+country,UK,United Kingdom
+country,KR,South Korea
+country,UY,Uruguay
+country,TW,Taiwan
+country,UAE,United Arab Emirates
+country,I-INT,Intelsat
+country,F,France
+country,I,Italy
+country,FI,Finland
+country,CH,Switzerland
+owner,SPXS,SpaceX
+owner,PVO,Soviet Air Defence Forces
+owner,PLAN,Planet Labs
+owner,PLABS,Planet Labs
+owner,GUKOSR,Russian military space forces (GUKOS)
+owner,GUKOS,Soviet/Russian military space forces (GUKOS)
+owner,UNKS,Soviet military space forces (UNKS)
+owner,TSUKOS,Soviet military space forces (TsUKOS)
+owner,ONEWEBN,OneWeb
+owner,ONEWEB,OneWeb
+owner,KUIP,Amazon Kuiper
+owner,NROC,US National Reconnaissance Office
+owner,NRO/SAFSP,US National Reconnaissance Office
+owner,NRO/CIA,US National Reconnaissance Office
+owner,YUANX,Shanghai Yuanxin (Qianfan)
+owner,ZXW,China Satellite Network Group (Guowang)
+owner,RKKE,RKK Energia
+owner,NPOE,NPO Energia
+owner,GSFC,NASA Goddard
+owner,JSC,NASA Johnson
+owner,VMF,Soviet Navy
+owner,SPIRE,Spire Global
+owner,CGSTL,Chang Guang Satellite Technology
+owner,ZZB,PLA General Armament Department
+owner,ZLZB,PLA Strategic Support Force
+owner,SWARM,Swarm Technologies
+owner,OKB10,OKB-10 (Reshetnev)
+owner,PRIR,Priroda Center
+owner,AFSMC,US Air Force Space and Missile Systems Center
+country,GR,Greece
+country,AR,Argentina
+country,MX,Mexico
+country,T,Thailand
+country,HK,Hong Kong
+country,P,Portugal
+country,SK,Slovakia
+country,CZ,Czechia
+country,CSSR,Czechoslovakia
+country,CSFR,Czechoslovakia
+country,LA,Laos
+country,KP,North Korea
+country,OM,Oman
+country,ESIB,Balearic Islands
+satellite,25544,International Space Station

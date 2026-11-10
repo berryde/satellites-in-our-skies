@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+	--color-space: #02030a;
+	--color-leo: #5eead4;
+	--color-meo: #fbbf24;
+	--color-geo: #f472b6;
+	--color-elliptical: #a78bfa;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+	margin: 0;
+	background: var(--color-space);
+	color: #e5e7eb;
+	overflow: hidden;
+}

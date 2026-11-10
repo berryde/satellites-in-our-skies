@@ -1,31 +1,30 @@
-# The satellites in our skies
+# The Satellites in Our Skies
 
-This repository contains the data and code required to generate and view "The satellites in our skies" data visualization. This repository consists of two directories:
+Every satellite humanity has put into Earth orbit since 1957, on a 3D globe you can scrub through time. Served at [berryde.com/projects/satellites](https://berryde.com/projects/satellites).
 
-## Contents
+V2 is a rewrite of a 2022 university data-visualisation project (see the `main` branch history).
 
-### `app`
+## How it works
 
-This directory contains the SvelteKit data visualisation showing various charts about satellites and space missions. You can explore the different charts and see how the data changes over time.
+- **`pipeline/`**: Python (uv) + DuckDB. Downloads the raw catalogues into `pipeline/.cache` and builds the static files in `public/data/`. It runs locally or in CI, never on Cloudflare.
+- **`src/`**: Vite + React + TypeScript. [globe.gl](https://github.com/vasturiano/globe.gl) draws the Earth, and a custom `THREE.Points` layer (`src/globe/satelliteLayer.ts`) computes every satellite's position on the GPU from its orbital elements, so tens of thousands of moving points stay cheap.
+- **Hosting**: a static-assets-only Cloudflare Worker (`wrangler.jsonc`). There is no Worker script, so serving it is free and unmetered.
 
-### `data`
+## Commands
 
-This directory contains the raw datasets from the UCS satellite database and Next Spaceflight. It also includes a Jupyter notebook to perform preprocessing on these datasets. You can use this notebook to clean and prepare the data for use in the data visualization.
-
-## Building the application
-
-To build the application for standalone use, execute the following commands:
-
-```bash
+```sh
 npm install
-npm run build
-npx http-server build -bgo
+npm run data      # generate public/data (needs uv); required once after cloning, as it isn't committed
+npm run dev       # http://localhost:5173/projects/satellites/
+npm run build     # type-check and build into dist/projects/satellites/
+npm run deploy    # build and deploy with wrangler
 ```
 
-To build the application and preview it from within the repository, simply execute:
+Open `?t=1965-06-01` to view the globe paused at a given moment.
 
-```bash
-npm install
-npm run build
-npm run preview
-```
+## Data
+
+- [GCAT](https://planet4589.org/space/gcat) by Jonathan C. McDowell (CC-BY): every catalogued payload, with launch and decay dates and orbit shape.
+- [CelesTrak](https://celestrak.org) current orbital elements, for live positions (in progress).
+
+Until CelesTrak elements are wired in, each satellite's orbit shape is real but its orientation and position along the orbit are illustrative.
