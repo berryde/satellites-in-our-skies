@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T00:00:00Z",
+  "title": "Design System: The Satellites in Our Skies",
+  "extensions": {
+    "colorMeta": {
+      "space": { "role": "neutral", "displayName": "Deep Space", "canonical": "#02030a", "tonalRamp": ["oklch(10% 0.02 275)", "oklch(22% 0.03 275)", "oklch(34% 0.035 275)", "oklch(46% 0.035 275)", "oklch(58% 0.03 275)", "oklch(70% 0.025 275)", "oklch(83% 0.015 275)", "oklch(95% 0.008 275)"] },
+      "leo": { "role": "primary", "displayName": "Low Orbit Teal", "canonical": "#5eead4", "tonalRamp": ["oklch(15% 0.03 181)", "oklch(27% 0.06 181)", "oklch(39% 0.08 181)", "oklch(51% 0.1 181)", "oklch(63% 0.12 181)", "oklch(75% 0.135 181)", "oklch(85% 0.13 181)", "oklch(95% 0.05 181)"] },
+      "meo": { "role": "secondary", "displayName": "Medium Orbit Amber", "canonical": "#fbbf24", "tonalRamp": ["oklch(15% 0.03 84)", "oklch(27% 0.06 84)", "oklch(39% 0.09 84)", "oklch(51% 0.12 84)", "oklch(63% 0.145 84)", "oklch(75% 0.16 84)", "oklch(84% 0.165 84)", "oklch(95% 0.06 84)"] },
+      "geo": { "role": "secondary", "displayName": "Geostationary Pink", "canonical": "#f472b6", "tonalRamp": ["oklch(15% 0.04 350)", "oklch(27% 0.09 350)", "oklch(39% 0.13 350)", "oklch(51% 0.17 350)", "oklch(63% 0.19 350)", "oklch(72% 0.18 350)", "oklch(84% 0.1 350)", "oklch(95% 0.035 350)"] },
+      "elliptical": { "role": "secondary", "displayName": "Elliptical Violet", "canonical": "#a78bfa", "tonalRamp": ["oklch(15% 0.05 294)", "oklch(27% 0.1 294)", "oklch(39% 0.15 294)", "oklch(51% 0.19 294)", "oklch(61% 0.19 294)", "oklch(71% 0.16 294)", "oklch(84% 0.09 294)", "oklch(95% 0.03 294)"] },
+      "atmosphere": { "role": "tertiary", "displayName": "Atmosphere Blue", "canonical": "#4f8cff", "tonalRamp": ["oklch(15% 0.05 262)", "oklch(27% 0.1 262)", "oklch(39% 0.15 262)", "oklch(51% 0.19 262)", "oklch(66% 0.18 262)", "oklch(76% 0.13 262)", "oklch(86% 0.08 262)", "oklch(95% 0.03 262)"] },
+      "marker": { "role": "neutral", "displayName": "Marker White", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(100% 0 0)"] },
+      "text": { "role": "neutral", "displayName": "Starlight Grey", "canonical": "#e5e7eb", "tonalRamp": ["oklch(15% 0.02 262)", "oklch(27% 0.03 262)", "oklch(39% 0.03 262)", "oklch(51% 0.027 262)", "oklch(63% 0.024 262)", "oklch(75% 0.018 262)", "oklch(86% 0.01 262)", "oklch(93% 0.006 262)"] },
+      "text-muted": { "role": "neutral", "displayName": "Dim Grey", "canonical": "oklch(70.7% 0.022 261.325)", "tonalRamp": ["oklch(15% 0.02 261)", "oklch(27% 0.03 261)", "oklch(39% 0.03 261)", "oklch(51% 0.027 261)", "oklch(62% 0.025 261)", "oklch(70.7% 0.022 261)", "oklch(84% 0.012 261)", "oklch(95% 0.005 261)"] },
+      "text-faint": { "role": "neutral", "displayName": "Faint Grey", "canonical": "oklch(55.1% 0.027 264.364)", "tonalRamp": ["oklch(15% 0.02 264)", "oklch(27% 0.03 264)", "oklch(39% 0.03 264)", "oklch(47% 0.028 264)", "oklch(55.1% 0.027 264)", "oklch(70% 0.022 264)", "oklch(84% 0.012 264)", "oklch(95% 0.005 264)"] },
+      "live": { "role": "tertiary", "displayName": "Live Signal Red", "canonical": "oklch(80.8% 0.114 19.571)", "tonalRamp": ["oklch(15% 0.04 20)", "oklch(27% 0.09 20)", "oklch(39% 0.14 20)", "oklch(51% 0.19 20)", "oklch(63% 0.21 20)", "oklch(70.4% 0.191 22)", "oklch(80.8% 0.114 20)", "oklch(95% 0.03 20)"] },
+      "live-on": { "role": "tertiary", "displayName": "Live Signal Red (live)", "canonical": "oklch(70.4% 0.191 22.216)", "tonalRamp": ["oklch(15% 0.04 22)", "oklch(27% 0.09 22)", "oklch(39% 0.14 22)", "oklch(51% 0.19 22)", "oklch(63% 0.21 22)", "oklch(70.4% 0.191 22)", "oklch(82% 0.11 22)", "oklch(95% 0.03 22)"] },
+      "slider-accent": { "role": "primary", "displayName": "Slider Teal", "canonical": "oklch(85.5% 0.138 181.071)", "tonalRamp": ["oklch(15% 0.03 181)", "oklch(27% 0.06 181)", "oklch(39% 0.08 181)", "oklch(51% 0.1 181)", "oklch(63% 0.12 181)", "oklch(75% 0.135 181)", "oklch(85.5% 0.138 181)", "oklch(95% 0.05 181)"] },
+      "menu-surface": { "role": "neutral", "displayName": "Menu Slate", "canonical": "oklch(21% 0.034 264.665)", "tonalRamp": ["oklch(13% 0.03 265)", "oklch(21% 0.034 265)", "oklch(33% 0.035 265)", "oklch(45% 0.03 265)", "oklch(57% 0.027 265)", "oklch(70% 0.022 265)", "oklch(84% 0.012 265)", "oklch(95% 0.005 265)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The live count of satellites in orbit. Tabular figures." },
+      "headline": { "displayName": "Headline", "purpose": "The page title. 1.25rem below 640px, 1.5rem above." },
+      "title": { "displayName": "Title", "purpose": "The selected satellite's name in the details card." },
+      "body": { "displayName": "Body", "purpose": "Subtitle, legend rows, timeline controls, details list." },
+      "label": { "displayName": "Label", "purpose": "The name that follows the pointer over a satellite." },
+      "caption": { "displayName": "Caption", "purpose": "The data attribution footer, in Faint Grey." }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [{ "name": "sm", "value": "640px" }]
+  },
+  "components": [
+    {
+      "name": "Control Button",
+      "kind": "button",
+      "refersTo": "button-control",
+      "description": "Play / Pause in the timeline panel. Fixed width so the label change does not shift the row.",
+      "html": "<button type=\"button\" class=\"ds-btn-control\">Pause</button>",
+      "css": ".ds-btn-control { width: 4rem; padding: 4px 8px; border: none; border-radius: 4px; background: rgb(255 255 255 / 0.1); color: #e5e7eb; font: 400 0.875rem/1.429 ui-sans-serif, system-ui, sans-serif; cursor: pointer; } .ds-btn-control:hover { background: rgb(255 255 255 / 0.2); }"
+    },
+    {
+      "name": "Go Live Button",
+      "kind": "button",
+      "refersTo": "button-live",
+      "description": "Returns the timeline to the present. Disabled and relabelled \"● Live\" once live.",
+      "html": "<button type=\"button\" class=\"ds-btn-live\">Go live</button> <button type=\"button\" class=\"ds-btn-live\" disabled>● Live</button>",
+      "css": ".ds-btn-live { padding: 4px 8px; border: none; border-radius: 4px; background: transparent; color: oklch(80.8% 0.114 19.571); font: 500 0.875rem/1.429 ui-sans-serif, system-ui, sans-serif; cursor: pointer; } .ds-btn-live:hover { background: rgb(255 255 255 / 0.1); } .ds-btn-live:disabled { color: oklch(70.4% 0.191 22.216); background: transparent; cursor: default; }"
+    },
+    {
+      "name": "Speed Select",
+      "kind": "input",
+      "refersTo": "select-speed",
+      "description": "Native select for playback speed, styled like a control button.",
+      "html": "<select class=\"ds-select-speed\" aria-label=\"Playback speed\"><option>Real time</option><option>1 day/s</option><option>1 year/s</option></select>",
+      "css": ".ds-select-speed { padding: 4px 8px; border: none; border-radius: 4px; background: rgb(255 255 255 / 0.1); color: #e5e7eb; font: 400 0.875rem/1.429 ui-sans-serif, system-ui, sans-serif; } .ds-select-speed option { background: oklch(21% 0.034 264.665); }"
+    },
+    {
+      "name": "Date Slider",
+      "kind": "input",
+      "refersTo": "panel-timeline",
+      "description": "Native range input from 4 October 1957 to now, tinted with the slider accent.",
+      "html": "<input type=\"range\" class=\"ds-slider-date\" aria-label=\"Date\" min=\"0\" max=\"100\" value=\"70\">",
+      "css": ".ds-slider-date { width: 100%; accent-color: oklch(85.5% 0.138 181.071); }"
+    },
+    {
+      "name": "Timeline Panel",
+      "kind": "custom",
+      "refersTo": "panel-timeline",
+      "description": "Bottom-centre panel: playback controls and current UTC date above the date slider.",
+      "html": "<section class=\"ds-timeline\"><div class=\"ds-timeline-row\"><button type=\"button\" class=\"ds-timeline-btn\">Pause</button><span class=\"ds-timeline-date\">10 Nov 2026, 12:00 UTC</span><button type=\"button\" class=\"ds-timeline-live\" disabled>● Live</button></div><input type=\"range\" class=\"ds-timeline-slider\" aria-label=\"Date\" min=\"0\" max=\"100\" value=\"100\"></section>",
+      "css": ".ds-timeline { width: min(40rem, 100%); padding: 12px; border-radius: 12px; background: rgb(0 0 0 / 0.6); backdrop-filter: blur(8px); color: #e5e7eb; font: 400 0.875rem/1.429 ui-sans-serif, system-ui, sans-serif; } .ds-timeline-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .ds-timeline-date { flex: 1; min-width: 11rem; font-variant-numeric: tabular-nums; } .ds-timeline-btn { width: 4rem; padding: 4px 8px; border: none; border-radius: 4px; background: rgb(255 255 255 / 0.1); color: inherit; font: inherit; cursor: pointer; } .ds-timeline-btn:hover { background: rgb(255 255 255 / 0.2); } .ds-timeline-live { padding: 4px 8px; border: none; background: transparent; color: oklch(70.4% 0.191 22.216); font: inherit; font-weight: 500; } .ds-timeline-slider { width: 100%; margin-top: 8px; accent-color: oklch(85.5% 0.138 181.071); }"
+    },
+    {
+      "name": "Legend",
+      "kind": "custom",
+      "refersTo": "legend-row",
+      "description": "The live count and one toggle row per orbit class. A row switched off drops to 40% opacity.",
+      "html": "<section class=\"ds-legend\"><p class=\"ds-legend-count\">14,902</p><p class=\"ds-legend-caption\">satellites in orbit</p><ul class=\"ds-legend-list\"><li><button type=\"button\" class=\"ds-legend-row\" aria-pressed=\"true\"><span class=\"ds-legend-dot\" style=\"background:#5eead4\"></span><span class=\"ds-legend-name\">LEO</span><span class=\"ds-legend-n\">13,611</span></button></li><li><button type=\"button\" class=\"ds-legend-row\" aria-pressed=\"true\"><span class=\"ds-legend-dot\" style=\"background:#fbbf24\"></span><span class=\"ds-legend-name\">MEO</span><span class=\"ds-legend-n\">198</span></button></li><li><button type=\"button\" class=\"ds-legend-row\" aria-pressed=\"false\"><span class=\"ds-legend-dot\" style=\"background:#f472b6\"></span><span class=\"ds-legend-name\">GEO</span><span class=\"ds-legend-n\">912</span></button></li><li><button type=\"button\" class=\"ds-legend-row\" aria-pressed=\"true\"><span class=\"ds-legend-dot\" style=\"background:#a78bfa\"></span><span class=\"ds-legend-name\">Elliptical</span><span class=\"ds-legend-n\">181</span></button></li></ul></section>",
+      "css": ".ds-legend { color: #e5e7eb; font: 400 0.875rem/1.429 ui-sans-serif, system-ui, sans-serif; } .ds-legend-count { margin: 0; font-size: 1.875rem; line-height: 1.2; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-legend-caption { margin: 0 0 12px; color: oklch(70.7% 0.022 261.325); } .ds-legend-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; } .ds-legend-row { display: flex; align-items: center; gap: 8px; width: 11rem; padding: 2px 4px; border: none; border-radius: 4px; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; } .ds-legend-row:hover { background: rgb(255 255 255 / 0.1); } .ds-legend-row[aria-pressed=\"false\"] { opacity: 0.4; } .ds-legend-dot { width: 10px; height: 10px; border-radius: 9999px; } .ds-legend-name { flex: 1; } .ds-legend-n { color: oklch(70.7% 0.022 261.325); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Details Card",
+      "kind": "card",
+      "refersTo": "panel-details",
+      "description": "Top-right card for the selected satellite: name, orbit class, and a two-column list of facts.",
+      "html": "<aside class=\"ds-details\"><div class=\"ds-details-head\"><div class=\"ds-details-heading\"><h2 class=\"ds-details-name\">ISS (ZARYA)</h2><p class=\"ds-details-class\"><span class=\"ds-details-dot\"></span>LEO</p></div><button type=\"button\" class=\"ds-details-close\" aria-label=\"Close\">×</button></div><dl class=\"ds-details-list\"><dt>Altitude</dt><dd>413 km – 422 km</dd><dt>Inclination</dt><dd>51.6°</dd><dt>Period</dt><dd>93 min</dd><dt>Launched</dt><dd>20 November 1998</dd><dt>NORAD ID</dt><dd>25544</dd></dl></aside>",
+      "css": ".ds-details { width: min(20rem, 100%); padding: 16px; border-radius: 12px; background: rgb(0 0 0 / 0.7); backdrop-filter: blur(8px); color: #e5e7eb; font: 400 0.875rem/1.429 ui-sans-serif, system-ui, sans-serif; } .ds-details-head { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; } .ds-details-heading { flex: 1; } .ds-details-name { margin: 0; font-size: 1rem; line-height: 1.5; font-weight: 600; } .ds-details-class { display: flex; align-items: center; gap: 6px; margin: 0; color: oklch(70.7% 0.022 261.325); } .ds-details-dot { width: 8px; height: 8px; border-radius: 9999px; background: #5eead4; } .ds-details-close { padding: 0 8px; border: none; border-radius: 4px; background: transparent; color: oklch(70.7% 0.022 261.325); font-size: 1.125rem; line-height: 1; cursor: pointer; } .ds-details-close:hover { background: rgb(255 255 255 / 0.1); color: #fff; } .ds-details-list { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin: 0; } .ds-details-list dt { color: oklch(70.7% 0.022 261.325); } .ds-details-list dd { margin: 0; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Hover Label",
+      "kind": "chip",
+      "refersTo": "hover-label",
+      "description": "The satellite name that follows the pointer at a 14px offset.",
+      "html": "<div class=\"ds-hover-label\">HUBBLE SPACE TELESCOPE</div>",
+      "css": ".ds-hover-label { display: inline-block; padding: 4px 8px; border-radius: 4px; background: rgb(0 0 0 / 0.75); color: #e5e7eb; font: 400 0.75rem/1.333 ui-sans-serif, system-ui, sans-serif; white-space: nowrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Observatory",
+    "overview": "You are looking out at the sky in the dark. The globe fills the whole window, and the satellites moving around it are the view. Everything else is a handful of dim instrument readouts set at the edges of the glass: a title and a count in the top-left, a timeline along the bottom, and a details card that appears top-right only when a satellite is picked. Nothing sits over the middle of the view.\n\nThe mood is awe-inducing and approachable at once. The awe comes from the data, from tens of thousands of real points in motion and a number that climbs as the timeline plays, and never from decoration added on top. The approachability comes from plain language and familiar controls: a Play button that says \"Play\", a native slider, a native dropdown, words where an expert tool would use symbols. A visitor who has never heard of an orbital element should feel invited in.\n\nThe system is small and unbranded on purpose. It uses the device's own sans-serif, one near-black ground, four colours that each mean one orbit class, and a few translucent panels. The panel treatment in particular (flat translucent black with a background blur) is the current state, not a commitment; later work may change it.",
+    "keyCharacteristics": [
+      "The globe is full-bleed and always visible; the interface occupies the corners and the bottom edge.",
+      "Colour carries meaning: the four orbit-class colours are the only saturated colours that belong to the data.",
+      "System sans-serif throughout, with tabular figures on every number that changes.",
+      "Dark only. There is no light theme.",
+      "Native form controls (range slider, select), lightly tinted.",
+      "Plain words on every control and label."
+    ],
+    "rules": [
+      { "name": "The Four Orbits Rule", "body": "Teal, amber, pink, and violet each mean one orbit class. They are not available as general accents, and a fifth saturated colour needs a fifth thing to mean.", "section": "colors" },
+      { "name": "The Mirror Rule", "body": "The orbit colours are defined twice: as `--color-*` theme tokens in `src/index.css` and as the `ORBIT_COLORS` array in `src/App.tsx` that feeds the shader. Change both together.", "section": "colors" },
+      { "name": "The Steady Numbers Rule", "body": "Any figure that updates while time plays (the count, the per-class counts, the date and time, the details values) uses tabular figures so it does not jitter.", "section": "typography" },
+      { "name": "The Two Weights Rule", "body": "Only 400 and 600 are used. Emphasis comes from size and from the grey steps, not from more weights.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep the centre of the viewport clear. Interface belongs at the edges and corners, on top of a globe that always fills the window.",
+      "Do use the four orbit colours only for their orbit class, and pair each with its name wherever it appears outside the globe.",
+      "Do set every changing number in tabular figures.",
+      "Do label controls with plain words (\"Play\", \"Go live\", \"satellites in orbit\") and show times in UTC.",
+      "Do keep panels narrow enough to fit a phone: `min(width, 100% - 2rem)`.",
+      "Do update `src/index.css` and `ORBIT_COLORS` in `src/App.tsx` together when an orbit colour changes."
+    ],
+    "donts": [
+      "Don't add a saturated colour that does not stand for something in the data. Red already means \"now\".",
+      "Don't treat the translucent blurred panel as fixed. It is the current treatment and is open to change.",
+      "Don't add interface motion that competes with the scene; the satellites are the animation.",
+      "Don't add a light theme. The night-side Earth and the point colours depend on the dark ground."
+    ]
+  }
+}
