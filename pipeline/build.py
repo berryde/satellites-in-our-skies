@@ -222,7 +222,9 @@ def main() -> None:
     countries, country_index = lookup("country")
     owners, owner_index = lookup("owner")
     # names.csv can also rename satellites. The ISS is catalogued as its first
-    # module, Zarya, which GCAT (reasonably, for the module) lists as inactive.
+    # module, Zarya, which GCAT (reasonably, for the module) lists as inactive,
+    # so a renamed satellite is also marked as operating. That only shows for
+    # one still in orbit: check that it is true before renaming one of those.
     names, satcats, active = zip(
         *con.execute(
             """

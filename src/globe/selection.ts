@@ -1,18 +1,20 @@
 import * as THREE from "three";
 import type { Catalog } from "../data/catalog";
-import { anglesAt, GLOBE_RADIUS, gmst, inOrbit, orbitPoint, satellitePosition, TAU } from "./orbitMath";
+import { anglesAt, GLOBE_RADIUS, gmst, inOrbit, MU, orbitPoint, satellitePosition, TAU } from "./orbitMath";
 
 const point: number[] = [0, 0, 0];
 const projected = new THREE.Vector3();
 
 /**
  * The visible satellite drawn nearest to a screen position, if any is within
- * `radius` CSS pixels. Positions are recomputed on the CPU (orbitMath.ts), and
+ * `radius` CSS pixels. `time` decides who is in orbit and `motionTime` where
+ * they are drawn, as in satelliteLayer.ts. Positions are recomputed on the CPU (orbitMath.ts), and
  * satellites hidden behind the Earth are skipped.
  */
 export function pickSatellite(
 	catalog: Catalog,
 	time: number,
+	motionTime: number,
 	camera: THREE.Camera,
 	viewport: { width: number; height: number },
 	pointer: { x: number; y: number },
@@ -26,7 +28,7 @@ export function pickSatellite(
 
 	for (let i = 0; i < catalog.count; i++) {
 		if (!classVisible[catalog.orbits.orbitClass[i]] || !inOrbit(catalog, i, time)) continue;
-		satellitePosition(catalog, i, time, point);
+		satellitePosition(catalog, i, motionTime, point);
 
 		projected.set(point[0], point[1], point[2]).project(camera);
 		if (projected.z > 1) continue; // behind the camera
@@ -73,6 +75,9 @@ const ringShader = {
 };
 
 const ORBIT_SEGMENTS = 256;
+const TRAIL_SEGMENTS = 40;
+/** A trail covers this much of one lap: the path just flown, fading out behind the satellite. */
+const TRAIL_LAPS = 0.08;
 
 /** Ring markers for the hovered and selected satellites, and the selected one's orbit. */
 export function createSelectionLayer(catalog: Catalog) {
@@ -108,28 +113,68 @@ export function createSelectionLayer(catalog: Catalog) {
 	);
 	const orbit = new THREE.Line(
 		orbitGeometry,
-		new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.45 }),
+		new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 }),
 	);
 	orbit.frustumCulled = false;
 	orbit.visible = false;
 	group.add(orbit);
 
-	function place(object: THREE.Points, index: number | null, time: number) {
+	/**
+	 * Where a satellite has just been, brightest at the satellite. It is the
+	 * path over the turning Earth, so a satellite that keeps station over one
+	 * place (the high ring) has no trail, and one that is moving shows which way.
+	 */
+	function trail(peak: number) {
+		const geometry = new THREE.BufferGeometry();
+		geometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array((TRAIL_SEGMENTS + 1) * 3), 3));
+		const shade = new Float32Array((TRAIL_SEGMENTS + 1) * 3);
+		for (let s = 0; s <= TRAIL_SEGMENTS; s++) shade.fill(peak * (1 - s / TRAIL_SEGMENTS) ** 2, s * 3, s * 3 + 3);
+		geometry.setAttribute("color", new THREE.BufferAttribute(shade, 3));
+		// Added to what is behind it, so that black is clear and the tail fades to nothing.
+		const material = new THREE.LineBasicMaterial({
+			vertexColors: true,
+			transparent: true,
+			blending: THREE.AdditiveBlending,
+			depthWrite: false,
+		});
+		const object = new THREE.Line(geometry, material);
+		object.frustumCulled = false;
+		object.visible = false;
+		group.add(object);
+		return object;
+	}
+	const hoverTrail = trail(0.7);
+	const selectedTrail = trail(1);
+
+	function drawTrail(object: THREE.Line, index: number | null, time: number, motionTime: number) {
 		object.visible = index !== null && inOrbit(catalog, index, time);
 		if (!object.visible) return;
-		satellitePosition(catalog, index!, time, point);
+		const a = catalog.orbits.semiMajorAxisKm[index!];
+		const lapMs = TAU * Math.sqrt((a * a * a) / MU) * 1000;
+		const position = object.geometry.getAttribute("position") as THREE.BufferAttribute;
+		for (let s = 0; s <= TRAIL_SEGMENTS; s++) {
+			satellitePosition(catalog, index!, motionTime - (s / TRAIL_SEGMENTS) * TRAIL_LAPS * lapMs, point);
+			position.setXYZ(s, point[0], point[1], point[2]);
+		}
+		position.needsUpdate = true;
+	}
+
+	function place(object: THREE.Points, index: number | null, time: number, motionTime: number) {
+		object.visible = index !== null && inOrbit(catalog, index, time);
+		if (!object.visible) return;
+		satellitePosition(catalog, index!, motionTime, point);
 		const position = object.geometry.getAttribute("position") as THREE.BufferAttribute;
 		position.setXYZ(0, point[0], point[1], point[2]);
 		position.needsUpdate = true;
 	}
 
 	/** The orbit as it lies right now, traced through a full turn of mean anomaly. */
-	function traceOrbit(index: number | null, time: number) {
+	function traceOrbit(index: number | null, time: number, motionTime: number) {
 		orbit.visible = index !== null && inOrbit(catalog, index, time);
 		if (!orbit.visible) return;
 		const o = catalog.orbits;
-		const { raan, argp } = anglesAt(catalog, index!, (time - catalog.epoch) / 1000);
-		const earthAngle = gmst(time);
+		const { raan, argp } = anglesAt(catalog, index!, (motionTime - catalog.epoch) / 1000);
+		const earthAngle = gmst(motionTime);
 		const position = orbitGeometry.getAttribute("position") as THREE.BufferAttribute;
 		for (let s = 0; s <= ORBIT_SEGMENTS; s++) {
 			const anomaly = (s / ORBIT_SEGMENTS) * TAU;
@@ -141,10 +186,12 @@ export function createSelectionLayer(catalog: Catalog) {
 
 	return {
 		object: group,
-		update(time: number, hovered: number | null, selected: number | null) {
-			place(hoverMarker, hovered === selected ? null : hovered, time);
-			place(selectedMarker, selected, time);
-			traceOrbit(selected, time);
+		update(time: number, motionTime: number, hovered: number | null, selected: number | null) {
+			place(hoverMarker, hovered === selected ? null : hovered, time, motionTime);
+			place(selectedMarker, selected, time, motionTime);
+			traceOrbit(selected, time, motionTime);
+			drawTrail(hoverTrail, hovered === selected ? null : hovered, time, motionTime);
+			drawTrail(selectedTrail, selected, time, motionTime);
 		},
 		dispose() {
 			group.traverse((child) => {

@@ -25,7 +25,7 @@ The complete historical catalogue, not just what is up there today: every catalo
 - Served as a project page at berryde.com/projects/satellites, inside the author's personal site.
 - V2 is a rewrite of a 2022 university data-visualisation project (history on the `main` branch).
 - A visitor drags the globe, scrubs or plays the timeline, changes playback speed, returns to the live moment, toggles orbit classes, and hovers or taps a satellite to read its details.
-- Deep links: `?t=1965-06-01` opens the globe paused at that moment; `?sat=25544` opens a satellite's details by NORAD catalogue number.
+- Deep links: `?t=1965-06-01` opens the globe paused at that moment; `?sat=25544` opens a satellite's details by NORAD catalogue number. The address bar keeps itself a link to what is on screen: the selected satellite, and the moment on display while paused.
 
 ## Capabilities and Constraints
 
@@ -52,7 +52,7 @@ Data accuracy:
 ## Brand Commitments
 
 - Name: "The Satellites in Our Skies".
-- Subtitle in use: "Every payload in Earth orbit since 1957".
+- Subtitle: "Every satellite put into Earth orbit since 1957", kept for the page description and link previews; on the page itself the title stands alone, and the title card carries the context (dropped from the interface on 14 November 2026 as taking space without adding much).
 - It lives under berryde.com as one of the author's projects.
 
 ## Evidence on Hand

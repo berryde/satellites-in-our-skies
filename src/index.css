@@ -6,6 +6,112 @@
 	--color-meo: #fbbf24;
 	--color-geo: #f472b6;
 	--color-elliptical: #a78bfa;
+	/*
+	 * One family, Archivo, with its width doing the work of hierarchy: labels set
+	 * wide like the engraving on an instrument, readouts narrow and light.
+	 */
+	--font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * A plate: a pane of smoked glass over the scene. The satellites behind it
+ * blur into coloured light, so the panel belongs to the sky while its text
+ * stays readable. A faint sheen along the top edge catches the light.
+ */
+@utility plate {
+	background:
+		linear-gradient(to bottom, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.015) 45%, transparent),
+		rgb(2 3 10 / var(--plate-alpha, 0.55));
+	border: 1px solid rgb(255 255 255 / 0.12);
+	border-radius: 6px;
+	box-shadow:
+		inset 0 1px 0 rgb(255 255 255 / 0.1),
+		0 24px 48px -24px rgb(0 0 0 / 0.9);
+	backdrop-filter: blur(20px) saturate(1.5);
+}
+
+/* A label engraved on the instrument: wide capitals, spaced. */
+@utility engraved {
+	font-stretch: 125%;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+/* A readout: narrow, light figures that keep their width as they change. */
+@utility readout {
+	font-stretch: 80%;
+	font-weight: 300;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.02em;
+}
+
+/*
+ * A telemetry caption: small spaced capitals at the face's normal width, as a
+ * broadcast labels its readouts. Wide capitals stay the title's alone.
+ */
+@utility caps {
+	font-size: 0.625rem;
+	line-height: 1;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-variant-numeric: tabular-nums;
+}
+
+/* A milestone passed by the playhead: one ring of light runs out from it and is gone. */
+@keyframes milestone-passed {
+	from {
+		scale: 1;
+		opacity: 0.9;
+	}
+	to {
+		scale: 3.2;
+		opacity: 0;
+	}
+}
+
+/* A control: a hairline outline that fills faintly under the pointer. */
+@utility btn {
+	border: 1px solid rgb(255 255 255 / 0.24);
+	border-radius: 3px;
+	&:hover:not(:disabled) {
+		border-color: rgb(255 255 255 / 0.5);
+		background: rgb(255 255 255 / 0.1);
+	}
+	&:disabled {
+		border-color: rgb(255 255 255 / 0.1);
+		color: var(--color-gray-500);
+	}
+}
+
+/* Room for the desktop layout: the credit line fits along the bottom. */
+@custom-variant wide (@media (width >= 72rem) and (height >= 32.5rem));
+/* A phone held upright, or any window too short for the panels to sit side by side. */
+@custom-variant compact (@media (width < 40rem) or (height < 32.5rem));
+/* Everything compact is not: room for the legend's full rows. */
+@custom-variant roomy (@media (width >= 40rem) and (height >= 32.5rem));
+/* A phone on its side. */
+@custom-variant short (@media (height < 32.5rem));
+
+html {
+	/* Dark only: the browser's own menus and scrollbars follow. */
+	color-scheme: dark;
+}
+
+/* White marks where you are, on every control: see DESIGN.md, "The White Is Here Rule". */
+:focus-visible {
+	outline: 2px solid rgb(255 255 255 / 0.8);
+	outline-offset: 2px;
+}
+
+::selection {
+	background: rgb(255 255 255 / 0.25);
+}
+
+/* The search box draws its own clear button. */
+input[type="search"]::-webkit-search-cancel-button {
+	appearance: none;
 }
 
 html,
