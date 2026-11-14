@@ -1,0 +1,17 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "satellites-in-our-skies",
+	"compatibility_date": "2026-10-30",
+	// Static assets only: no Worker script, so requests are free and unmetered.
+	// Don't add `main`, `run_worker_first` or Workers Caching without checking pricing.
+	"assets": {
+		"directory": "./dist",
+		"not_found_handling": "404-page"
+	},
+	// Mounted inside berryde.com, which is a separate Worker. A route takes
+	// precedence over the site's Worker for the paths it matches.
+	"routes": [{ "pattern": "berryde.com/projects/satellites*", "zone_name": "berryde.com" }],
+	// Only reachable through berryde.com, not a separate *.workers.dev URL.
+	"workers_dev": false,
+	"preview_urls": false
+}

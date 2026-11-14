@@ -1,0 +1,35 @@
+{
+	"name": "satellites-in-our-skies",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"data": "cd pipeline && uv run fetch.py && uv run build.py",
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite build && wrangler dev",
+		"deploy": "vite build && wrangler deploy",
+		"check": "tsc"
+	},
+	"dependencies": {
+		"@fontsource-variable/archivo": "^5.3.0",
+		"globe.gl": "^2.46.2",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"three": "^0.186.1",
+		"zustand": "^5.0.16"
+	},
+	"devDependencies": {
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"@types/three": "^0.186.0",
+		"@vitejs/plugin-react": "^6.1.2",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^7.0.2",
+		"vite": "^8.3.5",
+		"wrangler": "^4.153.0"
+	},
+	"allowScripts": {
+		"workerd@1.20261023.1": true
+	}
+}
