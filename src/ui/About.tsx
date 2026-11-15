@@ -8,8 +8,8 @@ export function AboutButton() {
 		<button
 			type="button"
 			popoverTarget="about"
-			aria-label="About and data sources"
-			title="About and data sources"
+			aria-label="About, data sources and author"
+			title="About, data sources and author"
 			// 36px to the eye; on touch an invisible margin makes it 44px to the finger.
 			className="pointer-events-auto btn relative grid size-9 place-items-center pointer-coarse:before:absolute pointer-coarse:before:-inset-1 pointer-coarse:before:content-['']"
 		>
@@ -22,7 +22,7 @@ export function AboutButton() {
 	);
 }
 
-/** The honesty note and the data credit, in a panel opened from the tools. */
+/** The honesty note, the data credit and the author, in a panel opened from the tools. */
 export function About({ sources }: { sources: string[] }) {
 	return (
 		<div
@@ -33,6 +33,16 @@ export function About({ sources }: { sources: string[] }) {
 			<h2 className="font-semibold">About</h2>
 			<p className="mt-3">{NOTE}</p>
 			<p className="mt-3 text-gray-400">Data: {sources.join("; ")}.</p>
+			<p className="mt-3 text-gray-400">
+				Made by Dan Berry ·{" "}
+				<a
+					href="https://berryde.com/"
+					rel="author"
+					className="underline decoration-white/40 underline-offset-2 hover:text-white hover:decoration-white"
+				>
+					berryde.com
+				</a>
+			</p>
 			<button
 				type="button"
 				popoverTarget="about"
